@@ -185,4 +185,4 @@ class CXStateLedWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
         return 'StateLed connected to CX'
 
     def createWidget(self, parent):
-        return CXStatetLed(parent)
+        return CXStateLed(parent)
