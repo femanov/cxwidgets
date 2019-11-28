@@ -1,12 +1,12 @@
 from cxwidgets.aQt.QtWidgets import QComboBox
 from cxwidgets.aQt.QtCore import pyqtSignal
 
-class FComboBox(QComboBox):
+class PComboBox(QComboBox):
 
     done = pyqtSignal(int)
 
     def __init__(self, parent=None):
-        super(FComboBox, self).__init__(parent)
+        super(PComboBox, self).__init__(parent)
         self.currentIndexChanged.connect(self.done)
         self.cs_name = None
         self.val_list = None

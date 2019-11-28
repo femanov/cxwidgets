@@ -1,11 +1,11 @@
 from .auxwidgets import HLine, BaseGridW, BaseFrameGridW
-from .pcheckbox import FCheckBox
-from .pcombobox import FComboBox
-from .pdoublespinbox import FDoubleSpinBox
-from .plcdnumber import FLCDNumber
-from .pspinbox import FSpinBox
+from .pcheckbox import PCheckBox
+from .pcombobox import PComboBox
+from .pdoublespinbox import PDoubleSpinBox
+from .plcdnumber import PLCDNumber
+from .pspinbox import PSpinBox
 from .pledwidget import LedWidget
-from .pswitch import FSwitch
+from .pswitch import PSwitch
 
 from .cx_doublespinbox import CXDoubleSpinBox
 from .cx_spinbox import CXSpinBox
@@ -21,8 +21,8 @@ from .cx_led import CXEventLed, CXStateLed
 from .cx_bpm_plot import BPMWidget, K500BPMWidget
 
 
-__all__ = [HLine, BaseGridW, BaseFrameGridW, FCheckBox, FComboBox, FDoubleSpinBox, FLCDNumber,
-           FSpinBox, LedWidget, FSwitch,
+__all__ = [HLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubleSpinBox, PLCDNumber,
+           PSpinBox, LedWidget, PSwitch,
            CXCheckBox, CXTextComboBox, CXDoubleSpinBox, CXLCDNumber, CXLineEdit, CXProgressBar,
            CXPushButton, CXSpinBox, BPMWidget, K500BPMWidget,
            CXSwitch, CXDevSwitch, CXEventLed, CXStateLed

@@ -1,21 +1,15 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty, Qt
 import pycx4.qcda as cda
-from .pdoublespinbox import FDoubleSpinBox
+from .pdoublespinbox import PDoubleSpinBox
 
 
-class CXDoubleSpinBox(FDoubleSpinBox):
+class CXDoubleSpinBox(PDoubleSpinBox):
     def __init__(self, parent=None, **kwargs):
         super(CXDoubleSpinBox, self).__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()
         self.done.connect(self.cs_send)
-
-    def mousePressEvent(self, QMouseEvent):
-        if QMouseEvent.button() == Qt.LeftButton:
-            print("Left Button Clicked")
-        elif QMouseEvent.button() == Qt.RightButton:
-            print("Right Button Clicked")
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':

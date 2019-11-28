@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-from PyQt5.QtWidgets import QApplication, QPushButton, QAbstractButton, QSizePolicy
+from PyQt5.QtWidgets import QApplication, QPushButton, QSizePolicy
 from PyQt5.QtGui import QBrush, QPen, QColor, QPainter
-from PyQt5.QtCore import Qt, QRect, pyqtSignal, pyqtSlot, pyqtProperty, QSize
+from PyQt5.QtCore import Qt, QRect, pyqtSignal, pyqtSlot, pyqtProperty
 
 
-class FSwitch(QPushButton):
+class PSwitch(QPushButton):
     done = pyqtSignal(bool)
     value = pyqtProperty(bool, QPushButton.isChecked)
 
@@ -53,11 +52,3 @@ class FSwitch(QPushButton):
             sw_rect.moveLeft(w/2 - h)
         painter.drawRoundedRect(sw_rect, r, r)
 
-
-if __name__ == '__main__':
-    app = QApplication(['test switcher'])
-    w = FSwitch()
-    w.done.connect(print)
-    w.setValue(True)
-    w.show()
-    app.exec_()

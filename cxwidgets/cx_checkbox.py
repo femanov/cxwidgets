@@ -1,9 +1,9 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
-from cxwidgets import FCheckBox
+from cxwidgets import PCheckBox
 import pycx4.qcda as cda
 
 
-class CXCheckBox(FCheckBox):
+class CXCheckBox(PCheckBox):
     def __init__(self, parent=None, **kwargs):
         super(CXCheckBox, self).__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)

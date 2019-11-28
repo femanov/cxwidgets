@@ -2,7 +2,7 @@ from cxwidgets.aQt.QtDesigner import QPyDesignerCustomWidgetPlugin
 from cxwidgets.aQt.QtGui import QIcon
 from cxwidgets import CXDoubleSpinBox, CXSpinBox, CXLCDNumber, CXCheckBox, CXTextComboBox
 from cxwidgets import CXPushButton, CXLineEdit, CXProgressBar, CXSwitch, CXDevSwitch
-from cxwidgets import CXEventLed
+from cxwidgets import CXEventLed, CXStateLed
 
 
 class CXDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):

@@ -1,9 +1,9 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty, Qt
 import pycx4.qcda as cda
-from .pspinbox import FSpinBox
+from .pspinbox import PSpinBox
 
 
-class CXSpinBox(FSpinBox):
+class CXSpinBox(PSpinBox):
     def __init__(self, parent=None, **kwargs):
         super(CXSpinBox, self).__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)

@@ -1,14 +1,14 @@
 from cxwidgets.aQt.QtDesigner import QPyDesignerCustomWidgetPlugin
 from cxwidgets.aQt.QtGui import QIcon
-from cxwidgets import FDoubleSpinBox, FCheckBox, FLCDNumber, FSpinBox, LedWidget
+from cxwidgets import PDoubleSpinBox, PCheckBox, PLCDNumber, PSpinBox, LedWidget
 
 
-class FDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):
+class PDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):
     def __init__(self, parent=None):
-        super(FDoubleSpinBoxWidgetPlugin, self).__init__(parent)
+        super().__init__(parent)
 
     def name(self):
-        return 'FDoubleSpinBox'
+        return 'PDoubleSpinBox'
 
     def group(self):
         return 'polymorph widgets'
@@ -29,12 +29,12 @@ class FDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):
         return 'a double spinbox from polymorphs'
 
     def createWidget(self, parent):
-        return FDoubleSpinBox(parent)
+        return PDoubleSpinBox(parent)
 
 
-class FComboBoxWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
+class PComboBoxWidgetPlugin(PDoubleSpinBoxWidgetPlugin):
     def name(self):
-        return 'FCheckBox'
+        return 'PCheckBox'
 
     def toolTip(self):
         return 'checkbox from polymorphs'
@@ -43,12 +43,12 @@ class FComboBoxWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
         return 'checkbox from polymorphs'
 
     def createWidget(self, parent):
-        return FCheckBox(parent)
+        return PCheckBox(parent)
 
 
-class FLCDNumberWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
+class PLCDNumberWidgetPlugin(PDoubleSpinBoxWidgetPlugin):
     def name(self):
-        return 'FLCDNumber'
+        return 'PLCDNumber'
 
     def toolTip(self):
         return 'LCDNumber from polymorphs'
@@ -57,12 +57,12 @@ class FLCDNumberWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
         return 'LCDNumber from polymorphs'
 
     def createWidget(self, parent):
-        return FLCDNumber(parent)
+        return PLCDNumber(parent)
 
 
-class FSpinBoxWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
+class PSpinBoxWidgetPlugin(PDoubleSpinBoxWidgetPlugin):
     def name(self):
-        return 'FSpinBox'
+        return 'PSpinBox'
 
     def toolTip(self):
         return 'spinbox from polymorphs'
@@ -71,10 +71,10 @@ class FSpinBoxWidgetPlugin(FDoubleSpinBoxWidgetPlugin):
         return 'spinbox from polymorphs'
 
     def createWidget(self, parent):
-        return FSpinBox(parent)
+        return PSpinBox(parent)
 
 
-class LedPlugin(FDoubleSpinBoxWidgetPlugin):
+class LedPlugin(PDoubleSpinBoxWidgetPlugin):
     def name(self):
         return "LedWidget"
 

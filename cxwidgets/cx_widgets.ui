@@ -218,73 +218,73 @@
  <customwidgets>
   <customwidget>
    <class>CXDoubleSpinBox</class>
-   <extends>FDoubleSpinBox</extends>
-   <header>fwidgets</header>
+   <extends>PDoubleSpinBox</extends>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXSpinBox</class>
-   <extends>FSpinBox</extends>
-   <header>fwidgets</header>
+   <extends>PSpinBox</extends>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXLCDNumber</class>
    <extends>QLCDNumber</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXCheckBox</class>
-   <extends>FCheckBox</extends>
-   <header>fwidgets</header>
+   <extends>PCheckBox</extends>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXPushButton</class>
    <extends>QPushButton</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXProgressBar</class>
    <extends>QProgressBar</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXSwitch</class>
    <extends>QPushButton</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXDevSwitch</class>
    <extends>QPushButton</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>CXEventLed</class>
    <extends>LedWidget</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
-   <class>FDoubleSpinBox</class>
+   <class>PDoubleSpinBox</class>
    <extends>QDoubleSpinBox</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
-   <class>FCheckBox</class>
+   <class>PCheckBox</class>
    <extends>QCheckBox</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
-   <class>FSpinBox</class>
+   <class>PSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
   <customwidget>
    <class>LedWidget</class>
    <extends>QWidget</extends>
-   <header>fwidgets</header>
+   <header>cxwidgets</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -1,9 +1,9 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
-from cxwidgets import FSwitch
+from cxwidgets import PSwitch
 import pycx4.qcda as cda
 
 
-class CXSwitch(FSwitch):
+class CXSwitch(PSwitch):
     def __init__(self, parent=None, **kwargs):
         super(CXSwitch, self).__init__(parent)
         self._cname = kwargs.get('cname', None)
@@ -50,7 +50,7 @@ class CXSwitch(FSwitch):
     cname = pyqtProperty(str, get_cname, set_cname)
 
 
-class CXDevSwitch(FSwitch):
+class CXDevSwitch(PSwitch):
     def __init__(self, parent=None, **kwargs):
         super(CXDevSwitch, self).__init__(parent)
         self.state_chan, self.off_chan, self.on_chan = None, None, None

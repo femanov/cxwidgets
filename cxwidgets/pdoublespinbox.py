@@ -14,11 +14,11 @@ from cxwidgets.aQt.QtWidgets import QDoubleSpinBox
 #         #return super(MyEventFilter,self).eventFilter(receiver, event)
 
 
-class FDoubleSpinBox(QDoubleSpinBox):
+class PDoubleSpinBox(QDoubleSpinBox):
     done = pyqtSignal(float)
 
     def __init__(self, parent=None, **kwargs):
-        super(FDoubleSpinBox, self).__init__(parent)
+        super(PDoubleSpinBox, self).__init__(parent)
         self.valueChanged.connect(self.done)
         self.setMinimum(kwargs.get('min', -100000.0))
         self.setMaximum(kwargs.get('max', 100000.0))
@@ -27,9 +27,15 @@ class FDoubleSpinBox(QDoubleSpinBox):
 
     def wheelEvent(self, event):
         if self.hasFocus():
-            super(FDoubleSpinBox, self).wheelEvent(event)
+            super(PDoubleSpinBox, self).wheelEvent(event)
         else:
             event.ignore()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            print("Left Button Clicked")
+        elif event.button() == Qt.RightButton:
+            print("Right Button Clicked")
 
     def focusInEvent(self, event):
         self.setFocusPolicy(Qt.WheelFocus)
