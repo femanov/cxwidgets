@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty, Qt
 import pycx4.qcda as cda
 from .pspinbox import PSpinBox
+from .dialogs.spinbox_cm import CXSpinboxCM
 
 
 class CXSpinBox(PSpinBox):
@@ -11,6 +12,11 @@ class CXSpinBox(PSpinBox):
 
         self.cx_connect()
         self.done.connect(self.cs_send)
+
+    def contextMenuEvent(self, event):
+        global w
+        w = CXSpinboxCM(self)
+        w.show()
 
     def mousePressEvent(self, QMouseEvent):
         if QMouseEvent.button() == Qt.LeftButton:

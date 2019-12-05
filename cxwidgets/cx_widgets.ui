@@ -129,7 +129,7 @@
     <item row="2" column="1">
      <widget class="CXSpinBox" name="cxspinbox">
       <property name="cname" stdset="0">
-       <string>canhw:11.bend.dcct1</string>
+       <string>cxhw:0.dcct.beamcurrent</string>
       </property>
      </widget>
     </item>

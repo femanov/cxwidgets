@@ -31,12 +31,6 @@ class PDoubleSpinBox(QDoubleSpinBox):
         else:
             event.ignore()
 
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            print("Left Button Clicked")
-        elif event.button() == Qt.RightButton:
-            print("Right Button Clicked")
-
     def focusInEvent(self, event):
         self.setFocusPolicy(Qt.WheelFocus)
         self.update()
