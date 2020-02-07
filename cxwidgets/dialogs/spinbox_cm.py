@@ -1,31 +1,32 @@
 from cxwidgets import BaseGridW, PSpinBox
 from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit
 from cxwidgets.aQt.QtCore import Qt
+from .general_cm import CXGeneralCM
 
 
-class CXSpinboxCM(BaseGridW):
+class CXSpinboxCM(CXGeneralCM):
     def __init__(self, source_w=None, parent=None):
-        super().__init__(parent)
-        self.source_w = source_w
-        self.grid.addWidget(QLabel("handle settings"), 0, 0, 1, 4, Qt.AlignHCenter)
+        super().__init__(source_w, parent)
 
-        self.grid.addWidget(QLabel("name"), 1, 0)
-        self.name_line = QLineEdit()
-        self.grid.addWidget(self.name_line, 1, 1)
-        self.name_line.setText(self.source_w.cname)
-        self.name_line.setReadOnly(True)
+        rc = self.grid.rowCount()
 
-        self.grid.addWidget(QLabel("step"), 2, 0)
+        self.grid.addWidget(QLabel("step"), rc + 2, 0)
         self.step_sb = PSpinBox()
-        self.grid.addWidget(self.step_sb, 2, 1)
+        self.grid.addWidget(self.step_sb, rc + 2, 1)
+        self.step_sb.setValue(source_w.singleStep())
+        self.step_sb.done.connect(source_w.setSingleStep)
 
-        self.grid.addWidget(QLabel("min"), 3, 0)
+        self.grid.addWidget(QLabel("min"), rc + 3, 0)
         self.min_sb = PSpinBox()
-        self.grid.addWidget(self.min_sb, 3, 1)
+        self.grid.addWidget(self.min_sb, rc + 3, 1)
+        self.min_sb.setValue(source_w.minimum())
+        self.min_sb.done.connect(source_w.setMinimum)
 
-        self.grid.addWidget(QLabel("max"), 4, 0)
+        self.grid.addWidget(QLabel("max"), rc + 4, 0)
         self.max_sb = PSpinBox()
-        self.grid.addWidget(self.max_sb, 4, 1)
+        self.grid.addWidget(self.max_sb, rc + 4, 1)
+        self.max_sb.setValue(source_w.maximum())
+        self.max_sb.done.connect(source_w.setMaximum)
 
         source_w.chan.get_range()
         source_w.chan.get_strings()

@@ -43,6 +43,7 @@ class CXSpinBox(PSpinBox):
         self.setValue(chan.val)
         if chan.rflags != 0:
             print(chan.rflags_text())
+            pass
 
     @pyqtSlot(str)
     def set_cname(self, cname):
