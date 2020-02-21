@@ -7,7 +7,7 @@ class PCheckBox(QCheckBox):
     value = pyqtProperty(bool, QCheckBox.isChecked)
 
     def __init__(self, parent=None, **kwargs):
-        super(PCheckBox, self).__init__(parent)
+        super().__init__(parent)
         self.clicked.connect(self.done)
 
     @pyqtSlot(bool)

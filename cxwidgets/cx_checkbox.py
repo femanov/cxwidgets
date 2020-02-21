@@ -5,7 +5,7 @@ import pycx4.qcda as cda
 
 class CXCheckBox(PCheckBox):
     def __init__(self, parent=None, **kwargs):
-        super(CXCheckBox, self).__init__(parent, **kwargs)
+        super().__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()

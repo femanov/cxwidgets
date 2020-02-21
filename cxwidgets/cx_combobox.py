@@ -6,7 +6,7 @@ import pycx4.qcda as cda
 
 class CXTextComboBox(QComboBox):
     def __init__(self, *args, **kwargs):
-        super(CXTextComboBox, self).__init__(*args)
+        super().__init__(*args)
         self._cname = kwargs.get('cname', None)
         self._values = ['none'] + kwargs.get('values', [])
         self._colors = [None] + kwargs.get('colors', [])

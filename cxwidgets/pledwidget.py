@@ -5,7 +5,7 @@ from cxwidgets.aQt.QtWidgets import QWidget
 
 class LedWidget(QWidget):
     def __init__(self, parent=None):
-        super(LedWidget, self).__init__(parent)
+        super().__init__(parent)
         self._diamX, self._diamY, self._diameter = 0, 0, 20
         self._color = QColor("red")
         self._alignment = Qt.AlignCenter

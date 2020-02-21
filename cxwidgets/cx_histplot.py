@@ -56,7 +56,7 @@ class ChanHist:
 
 class CXHistPlot(pg.PlotWidget):
     def __init__(self, parent=None, backdround='default', **kwargs):
-        super(CXHistPlot, self).__init__(parent, backdround, **kwargs)
+        super().__init__(parent, backdround, **kwargs)
         if 'cname' in kwargs:
             cname = kwargs['cname']
         else:
@@ -123,7 +123,7 @@ class CXHistPlot(pg.PlotWidget):
 
 class CXHistPlot2(pg.GraphicsLayoutWidget):
     def __init__(self, parent=None, **kwargs):
-        super(CXHistPlot2, self).__init__(parent, **kwargs)
+        super().__init__(parent, **kwargs)
         self.cnames = kwargs.get('cnames', None)
         self._hist_time = kwargs.get('hist_time', 100)
         # self.ci - central item = graphics layout

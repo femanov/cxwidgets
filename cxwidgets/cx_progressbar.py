@@ -5,7 +5,7 @@ import pycx4.qcda as cda
 
 class CXProgressBar(QProgressBar):
     def __init__(self, *args, **kwargs):
-        super(CXProgressBar, self).__init__(*args)
+        super().__init__(*args)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()

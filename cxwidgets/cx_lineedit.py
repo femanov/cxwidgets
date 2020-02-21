@@ -5,7 +5,7 @@ import pycx4.qcda as cda
 
 class CXLineEdit(QLineEdit):
     def __init__(self, *args, **kwargs):
-        super(CXLineEdit, self).__init__(*args)
+        super().__init__(*args)
         self._cname = kwargs.get('cname', '')
         self._max_len = kwargs.get('max_len', 100)
         self.setReadOnly(bool(kwargs.get('readonly', False)))

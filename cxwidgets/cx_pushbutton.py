@@ -5,7 +5,7 @@ import pycx4.qcda as cda
 
 class CXPushButton(QPushButton):
     def __init__(self, *args, **kwargs):
-        super(CXPushButton, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()

@@ -5,7 +5,7 @@ class PSpinBox(QSpinBox):
     done = pyqtSignal(int)
 
     def __init__(self, parent=None, **kwargs):
-        super(PSpinBox, self).__init__(parent)
+        super().__init__(parent)
         self.valueChanged.connect(self.done)
         self.setMinimum(kwargs.get('min', -100000))
         self.setMaximum(kwargs.get('max', 100000))

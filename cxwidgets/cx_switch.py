@@ -5,7 +5,7 @@ import pycx4.qcda as cda
 
 class CXSwitch(PSwitch):
     def __init__(self, parent=None, **kwargs):
-        super(CXSwitch, self).__init__(parent)
+        super().__init__(parent)
         self._cname = kwargs.get('cname', None)
         self._invert = kwargs.get('invert', False)
         self.chan = None
@@ -52,7 +52,7 @@ class CXSwitch(PSwitch):
 
 class CXDevSwitch(PSwitch):
     def __init__(self, parent=None, **kwargs):
-        super(CXDevSwitch, self).__init__(parent)
+        super().__init__(parent)
         self.state_chan, self.off_chan, self.on_chan = None, None, None
         self._devname = kwargs.get('devname', None)
         self.cx_connect()

@@ -18,7 +18,7 @@ class PDoubleSpinBox(QDoubleSpinBox):
     done = pyqtSignal(float)
 
     def __init__(self, parent=None, **kwargs):
-        super(PDoubleSpinBox, self).__init__(parent)
+        super().__init__(parent)
         self.valueChanged.connect(self.done)
         self.setMinimum(kwargs.get('min', -100000.0))
         self.setMaximum(kwargs.get('max', 100000.0))

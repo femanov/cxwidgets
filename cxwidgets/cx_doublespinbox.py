@@ -5,7 +5,7 @@ from .pdoublespinbox import PDoubleSpinBox
 
 class CXDoubleSpinBox(PDoubleSpinBox):
     def __init__(self, parent=None, **kwargs):
-        super(CXDoubleSpinBox, self).__init__(parent, **kwargs)
+        super().__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()

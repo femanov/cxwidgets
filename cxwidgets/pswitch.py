@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QPushButton, QSizePolicy
+from PyQt5.QtWidgets import QPushButton, QSizePolicy
 from PyQt5.QtGui import QBrush, QPen, QColor, QPainter
 from PyQt5.QtCore import Qt, QRect, pyqtSignal, pyqtSlot, pyqtProperty
 

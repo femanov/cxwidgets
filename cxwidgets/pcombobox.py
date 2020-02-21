@@ -6,7 +6,7 @@ class PComboBox(QComboBox):
     done = pyqtSignal(int)
 
     def __init__(self, parent=None):
-        super(PComboBox, self).__init__(parent)
+        super().__init__(parent)
         self.currentIndexChanged.connect(self.done)
         self.cs_name = None
         self.val_list = None

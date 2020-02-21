@@ -5,7 +5,7 @@ from .pledwidget import LedWidget
 
 class CXEventLed(LedWidget):
     def __init__(self, parent=None, **kwargs):
-        super(CXEventLed, self).__init__(parent)
+        super().__init__(parent)
         self._cname = kwargs.get('cname', None)
         self.setState(False)
         self.chan = None

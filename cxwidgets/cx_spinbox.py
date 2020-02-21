@@ -6,7 +6,7 @@ from .dialogs.spinbox_cm import CXSpinboxCM
 
 class CXSpinBox(PSpinBox):
     def __init__(self, parent=None, **kwargs):
-        super(CXSpinBox, self).__init__(parent, **kwargs)
+        super().__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
 
