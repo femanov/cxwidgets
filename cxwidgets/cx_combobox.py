@@ -67,5 +67,51 @@ class CXTextComboBox(QComboBox):
     def get_cname(self):
         return self._cname
 
+    cname = pyqtProperty(str, get_cname, set_cname)
+
+
+class CXIntComboBox(QComboBox):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args)
+        self._cname = kwargs.get('cname', None)
+        self._values = kwargs.get('values', {})
+
+        self.chan = None
+        self.cx_connect()
+
+        for k in self._values:
+            self.insertItem(k, self._values[k])
+
+        self.currentIndexChanged.connect(self.cs_send)
+
+    def cx_connect(self):
+        if self._cname is None or self._cname == '':
+            return
+        self.chan = cda.IChan(self._cname, private=True)
+        self.chan.valueChanged.connect(self.cs_update)
+
+    @pyqtSlot(str)
+    def setValue(self, value):
+        self.setCurrentIndex(value)
+
+    def value(self):
+        return self.currentIndex()
+
+    @pyqtSlot(int)
+    def cs_send(self, ind):
+        if self.chan.val != ind:
+            self.chan.setValue(ind)
+
+    def cs_update(self, chan):
+        if self.value() != chan.val:
+            self.setValue(chan.val)
+
+    @pyqtSlot(str)
+    def set_cname(self, cname):
+        self._cname = cname
+        self.cx_connect()
+
+    def get_cname(self):
+        return self._cname
 
     cname = pyqtProperty(str, get_cname, set_cname)

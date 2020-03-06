@@ -4,12 +4,14 @@ from cxwidgets.aQt.QtWidgets import QWidget, QGridLayout, QFrame
 
 
 class HLine(QFrame):
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args)
+        h = kwargs.get('h', 3)
         self.setFrameShape(QFrame.HLine)
         self.setFrameShadow(QFrame.Raised)
-        self.setLineWidth(3)
-        self.setMidLineWidth(3)
+        self.setLineWidth(1)
+        self.setMidLineWidth(h)
+
 
 
 class BaseGridW(QWidget):
