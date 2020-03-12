@@ -5,14 +5,14 @@ import pycx4.qcda as cda
 
 class CXPushButton(QPushButton):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._cname = kwargs.get('cname', None)
+        super().__init__(*args)
+        self._cname = kwargs.get('cname', '')
         self.chan = None
         self.cx_connect()
         self.clicked.connect(self.cs_send)
 
     def cx_connect(self):
-        if self._cname is None or self._cname == '':
+        if self._cname == '':
             return
         self.chan = cda.IChan(self._cname, private=True, on_update=True)
 
@@ -22,6 +22,8 @@ class CXPushButton(QPushButton):
 
     @pyqtSlot(str)
     def set_cname(self, cname):
+        if self._cname == cname:
+            return
         self._cname = cname
         self.cx_connect()
 
