@@ -1,4 +1,4 @@
-from .auxwidgets import HLine, BaseGridW, BaseFrameGridW
+from .auxwidgets import HLine, VLine, BaseGridW, BaseFrameGridW
 from .pcheckbox import PCheckBox
 from .pcombobox import PComboBox
 from .pdoublespinbox import PDoubleSpinBox
@@ -20,11 +20,13 @@ from .cx_led import CXEventLed, CXStateLed
 
 from .cx_bpm_plot import BPMWidget, K500BPMWidget
 
+from .cx_plot import CXProcPlot, CXPlotDataItem, CXScrollPlotDataItem
 
-__all__ = [HLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubleSpinBox, PLCDNumber,
+__all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubleSpinBox, PLCDNumber,
            PSpinBox, LedWidget, PSwitch,
            CXCheckBox, CXTextComboBox, CXIntComboBox, CXDoubleSpinBox, CXLCDNumber, CXLineEdit, CXProgressBar,
            CXPushButton, CXSpinBox, BPMWidget, K500BPMWidget,
-           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed
+           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed,
+           CXProcPlot, CXPlotDataItem, CXScrollPlotDataItem
            ]
 

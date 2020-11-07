@@ -13,6 +13,15 @@ class HLine(QFrame):
         self.setMidLineWidth(h)
 
 
+class VLine(QFrame):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args)
+        h = kwargs.get('h', 3)
+        self.setFrameShape(QFrame.VLine)
+        self.setFrameShadow(QFrame.Raised)
+        self.setLineWidth(1)
+        self.setMidLineWidth(h)
+
 
 class BaseGridW(QWidget):
     def __init__(self, parent=None):
