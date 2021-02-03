@@ -27,7 +27,7 @@ class PDoubleSpinBox(QDoubleSpinBox):
 
     def wheelEvent(self, event):
         if self.hasFocus():
-            super(PDoubleSpinBox, self).wheelEvent(event)
+            super().wheelEvent(event)
         else:
             event.ignore()
 
@@ -38,3 +38,9 @@ class PDoubleSpinBox(QDoubleSpinBox):
     def focusOutEvent(self, event):
         self.setFocusPolicy(Qt.StrongFocus)
         self.update()
+
+    def keyPressEvent(self, event):
+        print(event)
+        super().keyPressbEvent(event)
+
+
