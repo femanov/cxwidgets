@@ -1,17 +1,5 @@
-from cxwidgets.aQt.QtCore import Qt, pyqtSignal
+from cxwidgets.aQt.QtCore import Qt, pyqtSignal, pyqtProperty
 from cxwidgets.aQt.QtWidgets import QDoubleSpinBox
-
-
-# class SpinWheelEventFilter(QObject):
-#     def eventFilter(self, receiver, event):
-#         if event.type() == QEvent.Wheel and receiver.focusPolicy() == Qt.WheelFocus:
-#             event.accept()
-#             return False
-#         else:
-#             event.ignore()
-#             return True
-#         #Call Base Class Method to Continue Normal Event Processing
-#         #return super(MyEventFilter,self).eventFilter(receiver, event)
 
 
 class PDoubleSpinBox(QDoubleSpinBox):
@@ -19,13 +7,17 @@ class PDoubleSpinBox(QDoubleSpinBox):
 
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent)
+        # = kwargs.get("doneByEnter")
+
         self.valueChanged.connect(self.done)
-        self.setMinimum(kwargs.get('min', -100000.0))
-        self.setMaximum(kwargs.get('max', 100000.0))
+        self.setRange(kwargs.get('min', -100000.0), kwargs.get('max', 100000.0))
 
         self.setFocusPolicy(Qt.StrongFocus)
 
+        self._doneByEnter = False
+
     def wheelEvent(self, event):
+        #print("focus", self.hasFocus())
         if self.hasFocus():
             super().wheelEvent(event)
         else:
@@ -39,8 +31,25 @@ class PDoubleSpinBox(QDoubleSpinBox):
         self.setFocusPolicy(Qt.StrongFocus)
         self.update()
 
+    @pyqtProperty(bool)
+    def doneByEnter(self):
+        return self._doneByEnter
+
+    @doneByEnter.setter
+    def doneByEnter(self, value):
+        if self._doneByEnter == value:
+            return
+        if value:
+            self.valueChanged.disconnect(self.done)
+        else:
+            self.valueChanged.disconnect(self.done)
+        self._doneByEnter = value
+
     def keyPressEvent(self, event):
-        print(event)
-        super().keyPressbEvent(event)
+        if (event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter) and self._doneByEnter:
+            self.done.emit(self.value())
+        super().keyPressEvent(event)
+
+
 
 

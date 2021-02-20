@@ -11,15 +11,14 @@ class CXDoubleSpinBox(PDoubleSpinBox):
         self.cx_connect()
         self.done.connect(self.cs_send)
 
-    def contextMenuEvent(self, event):
-        print("menu?")
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            print("Left Button Clicked")
-        elif event.button() == Qt.RightButton:
-            print("Right Button Clicked")
-
+    # def contextMenuEvent(self, event):
+    #     print("menu?")
+    #
+    # def mousePressEvent(self, event):
+    #     if event.button() == Qt.LeftButton:
+    #         print("Left Button Clicked")
+    #     elif event.button() == Qt.RightButton:
+    #         print("Right Button Clicked")
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':
@@ -29,6 +28,8 @@ class CXDoubleSpinBox(PDoubleSpinBox):
 
     @pyqtSlot(float)
     def cs_send(self, value):
+        if self.chan is None:
+            return
         if value == self.chan.val:
             return
         self.chan.setValue(value)
