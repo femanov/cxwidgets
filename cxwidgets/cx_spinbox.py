@@ -33,6 +33,8 @@ class CXSpinBox(PSpinBox):
 
     @pyqtSlot(int)
     def cs_send(self, value):
+        if self.chan is None:
+            return
         if int(value) == self.chan.val:
             return
         self.chan.setValue(value)

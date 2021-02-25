@@ -18,5 +18,9 @@ class CXGeneralCM(BaseGridW):
         self.grid.addWidget(QLabel("flags"), 2, 0, 1, 2, Qt.AlignHCenter)
         self.flags_te = QTextEdit()
         self.grid.addWidget(self.flags_te, 3, 0, 1, 2, Qt.AlignHCenter)
-        ft = source_w.chan.rflags_text()
-        self.flags_te.setText('\n'.join(ft))
+        if source_w.chan is not None:
+            ft = source_w.chan.rflags_text()
+            self.flags_te.setText('\n'.join(ft))
+        else:
+            self.flags_te.setText('channel not defined')
+

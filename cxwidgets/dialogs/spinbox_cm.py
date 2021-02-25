@@ -28,6 +28,8 @@ class CXSpinboxCM(CXGeneralCM):
         self.max_sb.setValue(source_w.maximum())
         self.max_sb.done.connect(source_w.setMaximum)
 
-        source_w.chan.get_range()
-        source_w.chan.get_strings()
-        print(source_w.chan.quant)
+        if source_w.chan is not None:
+            source_w.chan.get_range()
+            source_w.chan.get_strings()
+            print(source_w.chan.quant)
+            print(source_w.chan.rng)
