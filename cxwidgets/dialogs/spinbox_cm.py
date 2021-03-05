@@ -31,5 +31,5 @@ class CXSpinboxCM(CXGeneralCM):
         if source_w.chan is not None:
             source_w.chan.get_range()
             source_w.chan.get_strings()
-            print(source_w.chan.quant)
-            print(source_w.chan.rng)
+            #print(source_w.chan.quant)
+            #print(source_w.chan.rng)

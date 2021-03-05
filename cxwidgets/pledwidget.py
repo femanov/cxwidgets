@@ -7,55 +7,48 @@ class LedWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._diamX, self._diamY, self._diameter = 0, 0, 20
-        self._color = QColor("red")
+        self._on_color = QColor("red")
+        self._off_color = self._on_color.darker(250)
         self._alignment = Qt.AlignCenter
         self._state = True
-        self._flashing = False
-        self._flashRate = 200
         self._timer = QTimer()
         self._timer.timeout.connect(self.toggleState)
         self.setDiameter(self._diameter)
 
     def paintEvent(self, event):
+        d = self._diameter
+        r = d / 2
         painter = QPainter()
         x = 0
         y = 0
         if self._alignment & Qt.AlignLeft:
             x = 0
         elif self._alignment & Qt.AlignRight:
-            x = self.width() - self._diameter
+            x = self.width() - d
         elif self._alignment & Qt.AlignHCenter:
-            x = (self.width() - self._diameter) / 2
+            x = (self.width() - d) / 2
         elif self._alignment & Qt.AlignJustify:
             x = 0
 
         if self._alignment & Qt.AlignTop:
             y = 0
         elif self._alignment & Qt.AlignBottom:
-            y = self.height() - self._diameter
+            y = self.height() - d
         elif self._alignment & Qt.AlignVCenter:
-            y = (self.height() - self._diameter) / 2
+            y = (self.height() - d) / 2
 
-        gradient = QRadialGradient(x + self._diameter / 2, y + self._diameter / 2,
-                                   self._diameter * 0.4, self._diameter * 0.4, self._diameter * 0.4)
+        gradient = QRadialGradient(x + r, y + r, d * 0.4, d * 0.4, d * 0.4)
         gradient.setColorAt(0, Qt.white)
 
-        if self._state:
-            gradient.setColorAt(1, self._color)
-        else:
-            gradient.setColorAt(1, self._color.darker(250))
+        color = self._on_color if self._state else self._off_color
+        gradient.setColorAt(1, color)
 
         painter.begin(self)
         brush = QBrush(gradient)
-        painter.setPen(self._color)
+        painter.setPen(color)
         painter.setRenderHint(QPainter.Antialiasing, True)
         painter.setBrush(brush)
-        painter.drawEllipse(x, y, self._diameter - 1, self._diameter - 1)
-
-        if self._flashRate > 0 and self._flashing:
-            self._timer.start(self._flashRate)
-        else:
-            self._timer.stop()
+        painter.drawEllipse(x, y, d - 1, d - 1)
 
         painter.end()
 
@@ -73,12 +66,20 @@ class LedWidget(QWidget):
         self._diameter = value
         self.update()
 
-    def getColor(self):
-        return self._color
+    def getOnColor(self):
+        return self._on_color
 
     @pyqtSlot(QColor)
-    def setColor(self, value):
-        self._color = value
+    def setOnColor(self, value):
+        self._on_color = value
+        self.update()
+
+    def getOffColor(self):
+        return self._off_color
+
+    @pyqtSlot(QColor)
+    def setOffColor(self, value):
+        self._off_color = value
         self.update()
 
     def getAlignment(self):
@@ -102,38 +103,13 @@ class LedWidget(QWidget):
         self._state = not self._state
         self.update()
 
-    def isFlashing(self):
-        return self._flashing
-
-    @pyqtSlot(bool)
-    def setFlashing(self, value):
-        self._flashing = value
-        self.update()
-
-    def getFlashRate(self):
-        return self._flashRate
-
-    @pyqtSlot(int)
-    def setFlashRate(self, value):
-        self._flashRate = value
-        self.update()
-
-    @pyqtSlot()
-    def startFlashing(self):
-        self.setFlashing(True)
-
-    @pyqtSlot()
-    def stopFlashing(self):
-        self.setFlashing(False)
-
     def flashOnce(self):
         self.toggleState()
         self._timer.singleShot(200, self.toggleState)
 
     diameter = pyqtProperty(int, getDiameter, setDiameter)
-    color = pyqtProperty(QColor, getColor, setColor)
+    on_color = pyqtProperty(QColor, getOnColor, setOnColor)
+    off_color = pyqtProperty(QColor, getOffColor, setOffColor)
     alignment = pyqtProperty(Qt.Alignment, getAlignment, setAlignment)
     state = pyqtProperty(bool, getState, setState)
-    flashing = pyqtProperty(bool, isFlashing, setFlashing)
-    flashRate = pyqtProperty(int, getFlashRate, setFlashRate)
 

@@ -193,15 +193,22 @@
     </item>
     <item row="11" column="1">
      <widget class="CXEventLed" name="cxeventled">
-      <property name="color">
+      <property name="off_color" stdset="0">
+       <color>
+        <red>171</red>
+        <green>171</green>
+        <blue>171</blue>
+       </color>
+      </property>
+      <property name="cname" stdset="0">
+       <string>cxhw:0.ddm.extracted</string>
+      </property>
+      <property name="color" stdset="0">
        <color>
         <red>255</red>
         <green>0</green>
         <blue>255</blue>
        </color>
-      </property>
-      <property name="cname" stdset="0">
-       <string>cxhw:0.ddm.extracted</string>
       </property>
      </widget>
     </item>
