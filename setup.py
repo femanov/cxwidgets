@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='cxwidgets',
-    version='0.6',
+    version='0.7',
     author='Fedor Emanov',
     description='PyQt widgets connected to CX v4 control system framewok with designer plugins',
 
