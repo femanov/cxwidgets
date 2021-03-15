@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtCore import pyqtProperty, pyqtSlot
 import pycx4.qcda as cda
 from .pledwidget import LedWidget
+from .menus.general_cm import CXGeneralCM
 
 
 class CXEventLed(LedWidget):
@@ -10,6 +11,12 @@ class CXEventLed(LedWidget):
         self.setState(False)
         self.chan = None
         self.cx_connect()
+
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':

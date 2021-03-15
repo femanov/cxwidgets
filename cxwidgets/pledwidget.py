@@ -10,7 +10,7 @@ class LedWidget(QWidget):
         self._on_color = QColor("red")
         self._off_color = self._on_color.darker(250)
         self._alignment = Qt.AlignCenter
-        self._state = True
+        self._state = False
         self._timer = QTimer()
         self._timer.timeout.connect(self.toggleState)
         self.setDiameter(self._diameter)
@@ -37,10 +37,10 @@ class LedWidget(QWidget):
         elif self._alignment & Qt.AlignVCenter:
             y = (self.height() - d) / 2
 
+        color = self._on_color if self._state else self._off_color
+
         gradient = QRadialGradient(x + r, y + r, d * 0.4, d * 0.4, d * 0.4)
         gradient.setColorAt(0, Qt.white)
-
-        color = self._on_color if self._state else self._off_color
         gradient.setColorAt(1, color)
 
         painter.begin(self)
@@ -49,14 +49,13 @@ class LedWidget(QWidget):
         painter.setRenderHint(QPainter.Antialiasing, True)
         painter.setBrush(brush)
         painter.drawEllipse(x, y, d - 1, d - 1)
-
         painter.end()
 
     def minimumSizeHint(self):
         return QSize(self._diameter, self._diameter)
 
     def sizeHint(self):
-        return QSize(self._diameter, self._diameter)
+        return QSize(self._diameter + 1, self._diameter + 1)
 
     def getDiameter(self):
         return self._diameter
@@ -91,10 +90,18 @@ class LedWidget(QWidget):
         self.update()
 
     def getState(self):
-        return self._alignment
+        return self._state
 
     @pyqtSlot(bool)
     def setState(self, value):
+        self._state = value
+        self.update()
+
+    def getValue(self):
+        return self._state
+
+    @pyqtSlot(bool)
+    def setValue(self, value):
         self._state = value
         self.update()
 
@@ -112,4 +119,5 @@ class LedWidget(QWidget):
     off_color = pyqtProperty(QColor, getOffColor, setOffColor)
     alignment = pyqtProperty(Qt.Alignment, getAlignment, setAlignment)
     state = pyqtProperty(bool, getState, setState)
+    value = pyqtProperty(bool, getValue, setValue)
 

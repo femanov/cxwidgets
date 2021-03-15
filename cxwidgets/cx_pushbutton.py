@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtWidgets import QPushButton
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 import pycx4.qcda as cda
+from .menus.general_cm import CXGeneralCM
 
 
 class CXPushButton(QPushButton):
@@ -10,14 +11,22 @@ class CXPushButton(QPushButton):
         self.chan = None
         self.cx_connect()
         self.clicked.connect(self.cs_send)
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname == '':
+            self.chan = None
             return
         self.chan = cda.IChan(self._cname, private=True, on_update=True)
 
     @pyqtSlot()
     def cs_send(self):
+        if chan is None:
+            return
         self.chan.setValue(1)
 
     @pyqtSlot(str)

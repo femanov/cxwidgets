@@ -1,10 +1,9 @@
-from cxwidgets.aQt.QtWidgets import QLCDNumber
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
+from cxwidgets.aQt.QtWidgets import QLabel
 import pycx4.qcda as cda
 from .menus.general_cm import CXGeneralCM
 
-
-class CXLCDNumber(QLCDNumber):
+class CXLabel(QLabel):
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent)
         self._cname = kwargs.get('cname', None)
@@ -24,7 +23,7 @@ class CXLCDNumber(QLCDNumber):
         self.chan.valueChanged.connect(self.cs_update)
 
     def cs_update(self, chan):
-        self.display(chan.val)
+        self.setText(str(chan.val))
 
     @pyqtSlot(float)
     def setCname(self, cname):

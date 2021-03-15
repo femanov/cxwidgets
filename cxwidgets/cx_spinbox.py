@@ -1,9 +1,7 @@
-from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty, Qt
-from cxwidgets.aQt.QtWidgets import QMenu, QWidgetAction
+from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 import pycx4.qcda as cda
 from .pspinbox import PSpinBox
-from .dialogs.spinbox_cm import CXSpinboxCM
-from .dialogs.general_cm import CXFlagsMenu
+from .menus.spinbox_cm import CXSpinboxCM
 
 class CXSpinBox(PSpinBox):
     def __init__(self, parent=None, **kwargs):
@@ -13,29 +11,11 @@ class CXSpinBox(PSpinBox):
 
         self.cx_connect()
         self.done.connect(self.cs_send)
+        self.context_menu = None
 
     def contextMenuEvent(self, event):
-        global w
-        w = CXSpinboxCM(self)
-        contextMenu = QMenu(self)
-        act_prt = contextMenu.addAction("print")
-        fl_menu = CXFlagsMenu(0)
-        contextMenu.addMenu(fl_menu)
-        act_all = QWidgetAction(contextMenu)
-        act_all.setDefaultWidget(w)
-
-        contextMenu.addAction(act_all)
-
-        action = contextMenu.exec_(self.mapToGlobal(event.pos()))
-        if action == act_prt:
-            print("hello")
-
-    def mousePressEvent(self, QMouseEvent):
-        if QMouseEvent.button() == Qt.LeftButton:
-            print("Left Button Clicked")
-        elif QMouseEvent.button() == Qt.RightButton:
-            #do what you want here
-            print("Right Button Clicked")
+        self.context_menu = CXSpinboxCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':

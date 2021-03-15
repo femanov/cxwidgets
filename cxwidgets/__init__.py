@@ -16,7 +16,9 @@ from .cx_pushbutton import CXPushButton
 from .cx_lineedit import CXLineEdit
 from .cx_progressbar import CXProgressBar
 from .cx_switch import CXSwitch, CXDevSwitch
+from .cx_label import CXLabel
 from .cx_led import CXEventLed, CXStateLed
+
 
 from .cx_bpm_plot import BPMWidget, K500BPMWidget
 
@@ -26,7 +28,7 @@ __all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubl
            PSpinBox, LedWidget, PSwitch,
            CXCheckBox, CXTextComboBox, CXIntComboBox, CXDoubleSpinBox, CXLCDNumber, CXLineEdit, CXProgressBar,
            CXPushButton, CXSpinBox, BPMWidget, K500BPMWidget,
-           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed,
+           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed, CXLabel,
            CXProcPlot, CXPlotDataItem, CXScrollPlotDataItem
            ]
 

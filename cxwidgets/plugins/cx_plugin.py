@@ -1,7 +1,7 @@
 from cxwidgets.aQt.QtDesigner import QPyDesignerCustomWidgetPlugin
 from cxwidgets.aQt.QtGui import QIcon
 from cxwidgets import CXDoubleSpinBox, CXSpinBox, CXLCDNumber, CXCheckBox, CXTextComboBox
-from cxwidgets import CXPushButton, CXLineEdit, CXProgressBar, CXSwitch, CXDevSwitch
+from cxwidgets import CXPushButton, CXLineEdit, CXProgressBar, CXSwitch, CXDevSwitch, CXLabel
 from cxwidgets import CXEventLed, CXStateLed
 
 
@@ -186,3 +186,18 @@ class CXStateLedWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
 
     def createWidget(self, parent):
         return CXStateLed(parent)
+
+
+class CXLabelWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
+    def name(self):
+        return 'CXLabel'
+
+    def toolTip(self):
+        return 'Label connected to CX'
+
+    def whatsThis(self):
+        return 'Label connected to CX'
+
+    def createWidget(self, parent):
+        return CXLabel(parent)
+

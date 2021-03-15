@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtWidgets import QProgressBar
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 import pycx4.qcda as cda
+from .menus.general_cm import CXGeneralCM
 
 
 class CXProgressBar(QProgressBar):
@@ -9,6 +10,12 @@ class CXProgressBar(QProgressBar):
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()
+
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':

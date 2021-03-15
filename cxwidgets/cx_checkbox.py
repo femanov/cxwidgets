@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 from cxwidgets import PCheckBox
 import pycx4.qcda as cda
+from .menus.general_cm import CXGeneralCM
 
 
 class CXCheckBox(PCheckBox):
@@ -10,6 +11,11 @@ class CXCheckBox(PCheckBox):
         self.chan = None
         self.cx_connect()
         self.done.connect(self.cs_send)
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':

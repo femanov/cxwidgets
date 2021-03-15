@@ -1,6 +1,7 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 from cxwidgets import PSwitch
 import pycx4.qcda as cda
+from .menus.general_cm import CXGeneralCM
 
 
 class CXSwitch(PSwitch):
@@ -25,6 +26,11 @@ class CXSwitch(PSwitch):
             return
         self.chan = cda.IChan(self._cname, private=True, on_update=True)
         self.chan.valueChanged.connect(self.cs_update)
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     @pyqtSlot(bool)
     def cs_send(self, value):
