@@ -27,12 +27,28 @@ class CXSpinboxSettingsW(BaseGridW):
         self.max_sb.setValue(source_w.maximum())
         self.max_sb.done.connect(source_w.setMaximum)
 
+        if not (source_w.hardmin == 0 and source_w.hardmax == 0):
+            self.min_sb.setMinimum(source_w.hardmin)
+            self.min_sb.setMaximum(source_w.hardmax)
+            self.max_sb.setMinimum(source_w.hardmin)
+            self.max_sb.setMaximum(source_w.hardmax)
+
+        self.grid.addWidget(QLabel("hardmin"), 3, 0)
+        self.grid.addWidget(QLabel(str(source_w.hardmin)), 3, 1)
+
+        self.grid.addWidget(QLabel("hardmax"), 4, 0)
+        self.grid.addWidget(QLabel(str(source_w.hardmax)), 4, 1)
+
         # ranges now working incorrectly - reported to Bolkhov
         # if source_w.chan is not None:
         #     source_w.chan.get_range()
         #     source_w.chan.get_strings()
         #     print(source_w.chan.quant)
         #     print(source_w.chan.rng)
+    def validate_minmax(self):
+        pass
+
+
 
 
 class CXSpinboxCM(CXGeneralCM):

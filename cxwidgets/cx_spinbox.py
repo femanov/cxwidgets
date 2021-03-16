@@ -3,6 +3,7 @@ import pycx4.qcda as cda
 from .pspinbox import PSpinBox
 from .menus.spinbox_cm import CXSpinboxCM
 
+
 class CXSpinBox(PSpinBox):
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
@@ -12,6 +13,9 @@ class CXSpinBox(PSpinBox):
         self.cx_connect()
         self.done.connect(self.cs_send)
         self.context_menu = None
+
+        self._hardmin = 0
+        self._hardmax = 0
 
     def contextMenuEvent(self, event):
         self.context_menu = CXSpinboxCM(self)
@@ -51,3 +55,20 @@ class CXSpinBox(PSpinBox):
 
     cname = pyqtProperty(str, get_cname, set_cname)
 
+    @pyqtSlot(int)
+    def set_hardmin(self, value):
+        self._hardmin = value
+
+    def get_hardmin(self):
+        return self._hardmin
+
+    hardmin = pyqtProperty(int, get_hardmin, set_hardmin)
+
+    @pyqtSlot(int)
+    def set_hardmax(self, value):
+        self._hardmax = value
+
+    def get_hardmax(self):
+        return self._hardmax
+
+    hardmax = pyqtProperty(int, get_hardmax, set_hardmax)

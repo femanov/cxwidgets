@@ -1,5 +1,5 @@
-from cxwidgets import BaseGridW, PSpinBox, PCheckBox, LedWidget
-from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit, QTextEdit, QMenu,QWidgetAction, QWidget, QHBoxLayout, QLayout
+from cxwidgets import BaseGridW, PSpinBox, PCheckBox, LedWidget, HLine
+from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit, QTextEdit, QMenu, QWidgetAction, QWidget, QHBoxLayout, QLayout
 from cxwidgets.aQt.QtCore import Qt
 from pycx4.qcda import rflags_meanings
 
@@ -26,25 +26,33 @@ class LabeledLed(QWidget):
 
 
 class CXGeneralCMW(BaseGridW):
+    """Widget for general CX channel information
+    """
+
     def __init__(self, source_chan=None, parent=None):
         super().__init__(parent)
         self.source_chan = source_chan
-        self.grid.addWidget(QLabel("channel info"), 0, 0, 1, 2, Qt.AlignHCenter)
+        self.l_h1 = QLabel("channel info")
+        self.l_h1.setStyleSheet("")
+        self.grid.addWidget(self.l_h1, 0, 0, 1, 2, Qt.AlignHCenter)
+        self.grid.addWidget(HLine(), 1, 0, 1, 2, Qt.AlignHCenter)
 
-        self.grid.addWidget(QLabel("name:  "), 1, 0)
+        self.grid.addWidget(QLabel("name:  "), 2, 0)
         name_txt = 'n/a' if source_chan is None else source_chan.name
-        self.grid.addWidget(QLabel(name_txt), 1, 1)
+        self.grid.addWidget(QLabel(name_txt), 2, 1)
 
-        self.grid.addWidget(QLabel("value:  "), 2, 0)
+        self.grid.addWidget(QLabel("value:  "), 3, 0)
         val_text = 'n/a' if source_chan is None else str(source_chan.val)
         self.label_val = QLabel(val_text)
-        self.grid.addWidget(self.label_val, 2, 1)
+        self.grid.addWidget(self.label_val, 3, 1)
 
-        self.grid.addWidget(QLabel("time:  "), 3, 0)
+        self.grid.addWidget(QLabel("time:  "), 4, 0)
         self.label_time = QLabel()
 
 
 class CXFlagsMenu(QMenu):
+    """QMenu to show CX rflags
+    """
     def __init__(self, source_chan):
         super().__init__()
         self.source_chan = source_chan
@@ -71,6 +79,9 @@ class CXFlagsMenu(QMenu):
 
 
 class CXGeneralCM(QMenu):
+    """General context menu for most CX-connected widgets
+
+    """
     def __init__(self, source_w):
         super().__init__()
         self.source_w = source_w

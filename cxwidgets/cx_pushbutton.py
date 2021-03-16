@@ -25,7 +25,7 @@ class CXPushButton(QPushButton):
 
     @pyqtSlot()
     def cs_send(self):
-        if chan is None:
+        if self.chan is None:
             return
         self.chan.setValue(1)
 
