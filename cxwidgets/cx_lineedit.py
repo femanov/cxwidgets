@@ -1,7 +1,7 @@
 from cxwidgets.aQt.QtWidgets import QLineEdit
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 import pycx4.qcda as cda
-
+from .menus.general_cm import CXGeneralCM
 
 class CXLineEdit(QLineEdit):
     def __init__(self, *args, **kwargs):
@@ -11,6 +11,11 @@ class CXLineEdit(QLineEdit):
         self.setReadOnly(bool(kwargs.get('readonly', False)))
         self.chan = None
         self.cx_connect()
+        self.context_menu = None
+
+    def contextMenuEvent(self, event):
+        self.context_menu = CXGeneralCM(self)
+        self.context_menu.popup(event.globalPos())
 
     def cx_connect(self):
         if self._cname == '':

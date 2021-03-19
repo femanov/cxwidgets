@@ -23,14 +23,165 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_14">
+    <item row="8" column="1">
+     <widget class="CXPushButton" name="cxpushbutton">
       <property name="text">
-       <string>Label</string>
+       <string>push me</string>
+      </property>
+      <property name="cname" stdset="0">
+       <string>cxhw:0.ddm.extracted</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
+    <item row="9" column="1">
+     <widget class="CXLineEdit" name="cxlineedit">
+      <property name="cname" stdset="0">
+       <string>cxhw:0.ddm.state</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>CXDoubleLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>button</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>State LED</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="CXSwitch" name="cxswitch">
+      <property name="maximumSize">
+       <size>
+        <width>36</width>
+        <height>18</height>
+       </size>
+      </property>
+      <property name="cname" stdset="0">
+       <string>canhw:19.ic.syn.xfer.test3.mask</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="1">
+     <widget class="CXStateLed" name="cxstateled"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="CXDoubleSpinBox" name="cxdoublespinbox">
+      <property name="cname">
+       <string>canhw:11.bend.dcct1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>spinbox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="CXCheckBox" name="cxcheckbox">
+      <property name="cname" stdset="0">
+       <string>canhw:19.ic.syn.xfer.test3.mask</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="CXLCDNumber" name="cxlcdnumber">
+      <property name="cname">
+       <string>canhw:11.bend.dcct1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>chan switch</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>LCD Number</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>dev switch</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="CXDevSwitch" name="cxdevswitch">
+      <property name="maximumSize">
+       <size>
+        <width>36</width>
+        <height>18</height>
+       </size>
+      </property>
+      <property name="devname" stdset="0">
+       <string>cxhw:18.blm_1_1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>progress bar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>checkbox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>double spinbox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>chan switch inv</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Event LED</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>line edit</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
      <widget class="CXSwitch" name="cxswitch_2">
       <property name="maximumSize">
        <size>
@@ -46,28 +197,21 @@
       </property>
      </widget>
     </item>
-    <item row="13" column="0">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>State LED</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="CXSpinBox" name="cxspinbox">
+    <item row="10" column="1">
+     <widget class="CXProgressBar" name="cxprogressbar">
       <property name="cname" stdset="0">
-       <string>cxhw:0.dcct.beamcurrent</string>
+       <string>cxhw:0.k500.mode_progress</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>double spinbox</string>
+       <string>CX Widgets Demo for designer </string>
       </property>
      </widget>
     </item>
-    <item row="12" column="1">
+    <item row="14" column="1">
      <widget class="CXEventLed" name="cxeventled">
       <property name="on_color" stdset="0">
        <color>
@@ -95,158 +239,54 @@
       </property>
      </widget>
     </item>
-    <item row="13" column="1">
-     <widget class="CXStateLed" name="cxstateled"/>
-    </item>
-    <item row="12" column="0">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Event LED</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>chan switch</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="CXLCDNumber" name="cxlcdnumber">
-      <property name="cname">
-       <string>canhw:11.bend.dcct1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>line edit</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="CXLineEdit" name="cxlineedit">
+    <item row="2" column="1">
+     <widget class="CXSpinBox" name="cxspinbox">
       <property name="cname" stdset="0">
-       <string>cxhw:0.ddm.state</string>
+       <string>cxhw:0.dcct.beamcurrent</string>
+      </property>
+      <property name="hardmax" stdset="0">
+       <number>20</number>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
-     <widget class="CXProgressBar" name="cxprogressbar">
-      <property name="cname" stdset="0">
-       <string>cxhw:0.k500.mode_progress</string>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>CXIntLabel</string>
       </property>
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="CXLabel" name="cxlabel">
+     <widget class="CXIntLabel" name="cxintlabel">
       <property name="cname">
        <string>canhw:11.bend.dcct1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>progress bar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="CXSwitch" name="cxswitch">
-      <property name="maximumSize">
-       <size>
-        <width>36</width>
-        <height>18</height>
-       </size>
-      </property>
-      <property name="cname" stdset="0">
-       <string>canhw:19.ic.syn.xfer.test3.mask</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>LCD Number</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>chan switch inv</string>
       </property>
      </widget>
     </item>
     <item row="6" column="0">
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="label_16">
       <property name="text">
-       <string>button</string>
+       <string>CXStrLabel</string>
       </property>
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="CXCheckBox" name="cxcheckbox">
-      <property name="cname" stdset="0">
-       <string>canhw:19.ic.syn.xfer.test3.mask</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1">
-     <widget class="CXDevSwitch" name="cxdevswitch">
-      <property name="maximumSize">
-       <size>
-        <width>36</width>
-        <height>18</height>
-       </size>
-      </property>
-      <property name="devname" stdset="0">
-       <string>cxhw:18.blm_1_1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="CXDoubleSpinBox" name="cxdoublespinbox">
+     <widget class="CXDoubleLabel" name="cxdoublelabel">
       <property name="cname">
        <string>canhw:11.bend.dcct1</string>
       </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>checkbox</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>CX Widgets Demo for designer </string>
+      <property name="decimals">
+       <number>3</number>
       </property>
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="CXPushButton" name="cxpushbutton">
-      <property name="text">
-       <string>push me</string>
+     <widget class="CXStrLabel" name="cxstrlabel">
+      <property name="cname">
+       <string>cxhw:0.ddm.state</string>
       </property>
-     </widget>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>dev switch</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>spinbox</string>
+      <property name="max_len" stdset="0">
+       <number>100</number>
       </property>
      </widget>
     </item>
@@ -310,7 +350,17 @@
    <header>cxwidgets</header>
   </customwidget>
   <customwidget>
-   <class>CXLabel</class>
+   <class>CXIntLabel</class>
+   <extends>QLabel</extends>
+   <header>cxwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>CXDoubleLabel</class>
+   <extends>CXIntLabel</extends>
+   <header>cxwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>CXStrLabel</class>
    <extends>QLabel</extends>
    <header>cxwidgets</header>
   </customwidget>

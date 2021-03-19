@@ -17,13 +17,14 @@ class CXDoubleSpinBox(PDoubleSpinBox):
            cname - cx channel name. When changed
 
     """
-
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
         self._cname = kwargs.get('cname', None)
         self.chan = None
         self.cx_connect()
         self.done.connect(self.cs_send)
+        self._hardmin = 0
+        self._hardmax = 0
 
     def contextMenuEvent(self, event):
         self.context_menu = CXDoubleSpinboxCM(self)
@@ -59,4 +60,22 @@ class CXDoubleSpinBox(PDoubleSpinBox):
         return self._cname
 
     cname = pyqtProperty(str, getCname, setCname)
+
+    @pyqtSlot(float)
+    def set_hardmin(self, value):
+        self._hardmin = value
+
+    def get_hardmin(self):
+        return self._hardmin
+
+    hardmin = pyqtProperty(float, get_hardmin, set_hardmin)
+
+    @pyqtSlot(float)
+    def set_hardmax(self, value):
+        self._hardmax = value
+
+    def get_hardmax(self):
+        return self._hardmax
+
+    hardmax = pyqtProperty(float, get_hardmax, set_hardmax)
 

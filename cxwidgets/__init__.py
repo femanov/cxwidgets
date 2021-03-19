@@ -16,8 +16,21 @@ from .cx_pushbutton import CXPushButton
 from .cx_lineedit import CXLineEdit
 from .cx_progressbar import CXProgressBar
 from .cx_switch import CXSwitch, CXDevSwitch
-from .cx_label import CXLabel
+from .cx_label import CXIntLabel, CXDoubleLabel, CXStrLabel
 from .cx_led import CXEventLed, CXStateLed
+
+# colors from bolkhov's apps
+#FFC0CB  - red
+#EDED6D  - yellow
+#0000FF  - wierd
+#4682B4  - old
+#B03060  - hardware problem
+#8B8B00  - software problem
+#FFA500  - changed by other op
+#C0E6E6  - data never read
+#00FF00  - alarm just gone
+#D8E3D5  - was changed programmatically
+#404040  - not found
 
 
 from .cx_bpm_plot import BPMWidget, K500BPMWidget
@@ -28,7 +41,8 @@ __all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubl
            PSpinBox, LedWidget, PSwitch,
            CXCheckBox, CXTextComboBox, CXIntComboBox, CXDoubleSpinBox, CXLCDNumber, CXLineEdit, CXProgressBar,
            CXPushButton, CXSpinBox, BPMWidget, K500BPMWidget,
-           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed, CXLabel,
+           CXSwitch, CXDevSwitch, CXEventLed, CXStateLed,
+           CXIntLabel, CXDoubleLabel, CXStrLabel,
            CXProcPlot, CXPlotDataItem, CXScrollPlotDataItem
            ]
 

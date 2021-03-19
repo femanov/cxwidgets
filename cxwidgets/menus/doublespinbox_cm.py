@@ -1,10 +1,10 @@
 from cxwidgets.aQt.QtCore import Qt
-from cxwidgets import BaseGridW, PSpinBox
-from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit, QWidgetAction
+from cxwidgets import BaseGridW, PDoubleSpinBox
+from cxwidgets.aQt.QtWidgets import QLabel, QWidgetAction
 from .general_cm import CXGeneralCM
 
 
-class CXSpinboxSettingsW(BaseGridW):
+class CXDoubleSpinboxSettingsW(BaseGridW):
     def __init__(self, source_w, parent=None):
         super().__init__(parent)
         self.source_w = source_w
@@ -13,19 +13,19 @@ class CXSpinboxSettingsW(BaseGridW):
         self.grid.addWidget(self.l_h1, 0, 0, 1, 4, Qt.AlignHCenter)
 
         self.grid.addWidget(QLabel("step:"), 1, 0)
-        self.step_sb = PSpinBox()
+        self.step_sb = PDoubleSpinBox()
         self.grid.addWidget(self.step_sb, 1, 1)
         self.step_sb.setValue(source_w.singleStep())
         self.step_sb.done.connect(source_w.setSingleStep)
 
         self.grid.addWidget(QLabel("range:"), 2, 0)
-        self.min_sb = PSpinBox()
+        self.min_sb = PDoubleSpinBox()
         self.grid.addWidget(self.min_sb, 2, 1)
         self.min_sb.setValue(source_w.minimum())
         self.min_sb.done.connect(source_w.setMinimum)
 
         self.grid.addWidget(QLabel("-"), 2, 2)
-        self.max_sb = PSpinBox()
+        self.max_sb = PDoubleSpinBox()
         self.max_sb.setValue(source_w.maximum())
         self.max_sb.done.connect(source_w.setMaximum)
         self.grid.addWidget(self.max_sb, 2, 3)
@@ -55,14 +55,13 @@ class CXSpinboxSettingsW(BaseGridW):
         pass
 
 
-class CXSpinboxCM(CXGeneralCM):
+class CXDoubleSpinboxCM(CXGeneralCM):
     def __init__(self, source_w):
         super().__init__(source_w)
 
         self.addSeparator()
 
-        self.w1 = CXSpinboxSettingsW(source_w)
+        self.w1 = CXDoubleSpinboxSettingsW(source_w)
         self.act_set = QWidgetAction(self)
         self.act_set.setDefaultWidget(self.w1)
         self.addAction(self.act_set)
-

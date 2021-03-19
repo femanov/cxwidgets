@@ -2,7 +2,8 @@ from cxwidgets import BaseGridW, PSpinBox, PCheckBox, LedWidget, HLine
 from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit, QTextEdit, QMenu, QWidgetAction, QWidget, QHBoxLayout, QLayout
 from cxwidgets.aQt.QtCore import Qt
 from pycx4.qcda import rflags_meanings
-
+import datetime
+import math
 
 class LabeledLed(QWidget):
     """LedWidget + label
@@ -33,7 +34,7 @@ class CXGeneralCMW(BaseGridW):
         super().__init__(parent)
         self.source_chan = source_chan
         self.l_h1 = QLabel("channel info")
-        self.l_h1.setStyleSheet("")
+        self.l_h1.setStyleSheet("font-weight: bold; font-size: 12pt")
         self.grid.addWidget(self.l_h1, 0, 0, 1, 2, Qt.AlignHCenter)
         self.grid.addWidget(HLine(), 1, 0, 1, 2, Qt.AlignHCenter)
 
@@ -42,12 +43,21 @@ class CXGeneralCMW(BaseGridW):
         self.grid.addWidget(QLabel(name_txt), 2, 1)
 
         self.grid.addWidget(QLabel("value:  "), 3, 0)
-        val_text = 'n/a' if source_chan is None else str(source_chan.val)
-        self.label_val = QLabel(val_text)
+        self.label_val = QLabel('n/a')
         self.grid.addWidget(self.label_val, 3, 1)
 
         self.grid.addWidget(QLabel("time:  "), 4, 0)
-        self.label_time = QLabel()
+        self.label_time = QLabel('n/a')
+        self.grid.addWidget(self.label_time, 4, 1)
+
+        if source_chan is not None:
+            source_chan.valueMeasured.connect(self.data_update)
+            self.data_update(source_chan)
+
+    def data_update(self, chan):
+        self.label_val.setText(str(chan.val))
+        self.label_time.setText(datetime.datetime.fromtimestamp(chan.time / 1e6).strftime("%Y-%m-%d %H:%M:%S.%f"))
+
 
 
 class CXFlagsMenu(QMenu):

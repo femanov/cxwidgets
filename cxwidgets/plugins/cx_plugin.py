@@ -1,7 +1,7 @@
 from cxwidgets.aQt.QtDesigner import QPyDesignerCustomWidgetPlugin
 from cxwidgets.aQt.QtGui import QIcon
 from cxwidgets import CXDoubleSpinBox, CXSpinBox, CXLCDNumber, CXCheckBox, CXTextComboBox
-from cxwidgets import CXPushButton, CXLineEdit, CXProgressBar, CXSwitch, CXDevSwitch, CXLabel
+from cxwidgets import CXPushButton, CXLineEdit, CXProgressBar, CXSwitch, CXDevSwitch, CXIntLabel, CXDoubleLabel, CXStrLabel
 from cxwidgets import CXEventLed, CXStateLed
 
 
@@ -188,16 +188,44 @@ class CXStateLedWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
         return CXStateLed(parent)
 
 
-class CXLabelWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
+class CXIntLabelWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
     def name(self):
-        return 'CXLabel'
+        return 'CXIntLabel'
 
     def toolTip(self):
-        return 'Label connected to CX'
+        return 'Label connected to CX int channel'
 
     def whatsThis(self):
-        return 'Label connected to CX'
+        return 'Label connected to CX int channel'
 
     def createWidget(self, parent):
-        return CXLabel(parent)
+        return CXIntLabel(parent)
+
+
+class CXDoubleLabelWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
+    def name(self):
+        return 'CXDoubleLabel'
+
+    def toolTip(self):
+        return 'Label connected to CX double channel'
+
+    def whatsThis(self):
+        return 'Label connected to CX double channel'
+
+    def createWidget(self, parent):
+        return CXDoubleLabel(parent)
+
+
+class CXStrLabelWidgetPlugin(CXDoubleSpinBoxWidgetPlugin):
+    def name(self):
+        return 'CXStrLabel'
+
+    def toolTip(self):
+        return 'Label connected to CX str channel'
+
+    def whatsThis(self):
+        return 'Label connected to CX str channel'
+
+    def createWidget(self, parent):
+        return CXStrLabel(parent)
 
