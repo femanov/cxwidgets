@@ -4,8 +4,8 @@ from cxwidgets.aQt.QtWidgets import QWidget
 
 
 class LedWidget(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, parent=None, **kwargs):
+        super().__init__(parent, **kwargs)
         self._diamX, self._diamY, self._diameter = 0, 0, 20
         self._on_color = QColor("red")
         self._off_color = self._on_color.darker(250)

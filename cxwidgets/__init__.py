@@ -19,19 +19,6 @@ from .cx_switch import CXSwitch, CXDevSwitch
 from .cx_label import CXIntLabel, CXDoubleLabel, CXStrLabel
 from .cx_led import CXEventLed, CXStateLed
 
-# colors from bolkhov's apps
-#FFC0CB  - red
-#EDED6D  - yellow
-#0000FF  - wierd
-#4682B4  - old
-#B03060  - hardware problem
-#8B8B00  - software problem
-#FFA500  - changed by other op
-#C0E6E6  - data never read
-#00FF00  - alarm just gone
-#D8E3D5  - was changed programmatically
-#404040  - not found
-
 
 from .cx_bpm_plot import BPMWidget, K500BPMWidget
 

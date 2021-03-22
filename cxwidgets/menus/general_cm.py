@@ -1,7 +1,7 @@
 from cxwidgets import BaseGridW, PSpinBox, PCheckBox, LedWidget, HLine
 from cxwidgets.aQt.QtWidgets import QLabel, QLineEdit, QTextEdit, QMenu, QWidgetAction, QWidget, QHBoxLayout, QLayout
 from cxwidgets.aQt.QtCore import Qt
-from pycx4.qcda import rflags_meanings
+from pycx4.qcda import rflags_order, rflags_meaning
 import datetime
 import math
 
@@ -30,8 +30,9 @@ class CXGeneralCMW(BaseGridW):
     """Widget for general CX channel information
     """
 
-    def __init__(self, source_chan=None, parent=None):
+    def __init__(self, source_widget, parent=None):
         super().__init__(parent)
+        source_chan = source_widget.chan
         self.source_chan = source_chan
         self.l_h1 = QLabel("channel info")
         self.l_h1.setStyleSheet("font-weight: bold; font-size: 12pt")
@@ -50,6 +51,10 @@ class CXGeneralCMW(BaseGridW):
         self.label_time = QLabel('n/a')
         self.grid.addWidget(self.label_time, 4, 1)
 
+        self.grid.addWidget(QLabel("status:  "), 5, 0)
+        self.label_status = QLabel(source_widget.status)
+        self.grid.addWidget(self.label_status, 5, 1)
+
         if source_chan is not None:
             source_chan.valueMeasured.connect(self.data_update)
             self.data_update(source_chan)
@@ -63,26 +68,26 @@ class CXGeneralCMW(BaseGridW):
 class CXFlagsMenu(QMenu):
     """QMenu to show CX rflags
     """
-    def __init__(self, source_chan):
+    def __init__(self, source_widget):
         super().__init__()
+        source_chan = source_widget.chan
         self.source_chan = source_chan
         self.setTitle('rflags')
         self.items = {}
         self.widgets = {}
 
-        for k in rflags_meanings.keys():
-            self.widgets[k] = LabeledLed(text=k)
+        for k in rflags_order:
+            self.widgets[k] = LabeledLed(text=rflags_meaning[k])
             self.items[k] = QWidgetAction(self)
             self.items[k].setDefaultWidget(self.widgets[k])
             self.addAction(self.items[k])
 
         if source_chan is not None:
-            rflags_t = source_chan.rflags_text()
-            self.setFlags(rflags_t)
+            self.setFlags(source_chan.rflags)
 
-    def setFlags(self, flags):
+    def setFlags(self, rflags: int):
         for k in self.widgets:
-            if k in flags:
+            if (k & rflags) > 0:
                 self.widgets[k].led.setValue(1)
             else:
                 self.widgets[k].led.setValue(0)
@@ -96,12 +101,12 @@ class CXGeneralCM(QMenu):
         super().__init__()
         self.source_w = source_w
 
-        w = CXGeneralCMW(source_w.chan)
+        w = CXGeneralCMW(source_w)
         self.act_gen = QWidgetAction(self)
         self.act_gen.setDefaultWidget(w)
         self.addAction(self.act_gen)
 
-        self.fl_menu = CXFlagsMenu(source_w.chan)
+        self.fl_menu = CXFlagsMenu(source_w)
         self.addMenu(self.fl_menu)
 
         # self.setAttribute(Qt.WA_DeleteOnClose) # this also works, but runs later

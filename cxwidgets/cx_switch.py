@@ -2,15 +2,12 @@ from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 from cxwidgets import PSwitch
 import pycx4.qcda as cda
 from .menus.general_cm import CXGeneralCM
+from .common_mixin import CommonMixin
 
-
-class CXSwitch(PSwitch):
+class CXSwitch(PSwitch, CommonMixin):
     def __init__(self, parent=None, **kwargs):
-        super().__init__(parent)
-        self._cname = kwargs.get('cname', None)
+        super().__init__(parent, **kwargs)
         self._invert = kwargs.get('invert', False)
-        self.chan = None
-        self.cx_connect()
         self.done.connect(self.cs_send)
 
     def setInvert(self, inv):
@@ -21,17 +18,6 @@ class CXSwitch(PSwitch):
 
     invert = pyqtProperty(bool, isInvert, setInvert)
 
-    def cx_connect(self):
-        if self._cname is None:
-            return
-        self.chan = cda.IChan(self._cname, private=True, on_update=True)
-        self.chan.valueChanged.connect(self.cs_update)
-        self.context_menu = None
-
-    def contextMenuEvent(self, event):
-        self.context_menu = CXGeneralCM(self)
-        self.context_menu.popup(event.globalPos())
-
     @pyqtSlot(bool)
     def cs_send(self, value):
         v = not bool(value) if self.invert else bool(value)
@@ -40,20 +26,9 @@ class CXSwitch(PSwitch):
         self.chan.setValue(v)
 
     def cs_update(self, chan):
+        super().cs_update(chan)
         v = not bool(chan.val) if self.invert else bool(chan.val)
         self.setValue(v)
-
-    @pyqtSlot(str)
-    def set_cname(self, cname):
-        if self._cname == cname:
-            return
-        self._cname = cname
-        self.cx_connect()
-
-    def get_cname(self):
-        return self._cname
-
-    cname = pyqtProperty(str, get_cname, set_cname)
 
 
 class CXDevSwitch(PSwitch):

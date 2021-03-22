@@ -2,8 +2,9 @@ from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty, Qt
 import pycx4.qcda as cda
 from .pdoublespinbox import PDoubleSpinBox
 from .menus.doublespinbox_cm import CXDoubleSpinboxCM
+from .common_mixin import CommonMixin
 
-class CXDoubleSpinBox(PDoubleSpinBox):
+class CXDoubleSpinBox(PDoubleSpinBox, CommonMixin):
     """Inherit: QDoubleSpinbox -> PDoubleSpinbox -> CXDoubleSpinBox.
        It is a double spinbox connected to CX channel.
        Gives some CX info and widget settings control over context menu.
@@ -19,12 +20,11 @@ class CXDoubleSpinBox(PDoubleSpinBox):
     """
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
-        self._cname = kwargs.get('cname', None)
-        self.chan = None
-        self.cx_connect()
         self.done.connect(self.cs_send)
+        self.context_menu = None
         self._hardmin = 0
         self._hardmax = 0
+
 
     def contextMenuEvent(self, event):
         self.context_menu = CXDoubleSpinboxCM(self)
@@ -35,31 +35,19 @@ class CXDoubleSpinBox(PDoubleSpinBox):
             return
         self.chan = cda.DChan(self._cname, private=True, get_curval=True)
         self.chan.valueChanged.connect(self.cs_update)
+        self.chan.resolve.connect(self.resolve_proc)
 
     @pyqtSlot(float)
     def cs_send(self, value):
         if self.chan is None:
             return
-        if value == self.chan.val:
-            return
-        self.chan.setValue(value)
+        if value != self.chan.val:
+            self.chan.setValue(value)
 
     def cs_update(self, chan):
-        if self.value() == chan.val:
-            return
-        self.setValue(chan.val)
-
-    @pyqtSlot(str)
-    def setCname(self, cname):
-        if self._cname == cname:
-            return
-        self._cname = cname
-        self.cx_connect()
-
-    def getCname(self):
-        return self._cname
-
-    cname = pyqtProperty(str, getCname, setCname)
+        super().cs_update(chan)
+        if self.value() != chan.val:
+            self.setValue(chan.val)
 
     @pyqtSlot(float)
     def set_hardmin(self, value):

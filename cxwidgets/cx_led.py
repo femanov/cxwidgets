@@ -1,71 +1,22 @@
 from cxwidgets.aQt.QtCore import pyqtProperty, pyqtSlot
-import pycx4.qcda as cda
 from .pledwidget import LedWidget
-from .menus.general_cm import CXGeneralCM
+from .common_mixin import CommonMixin
 
 
-class CXEventLed(LedWidget):
+class CXEventLed(LedWidget, CommonMixin):
     def __init__(self, parent=None, **kwargs):
-        super().__init__(parent)
-        self._cname = kwargs.get('cname', None)
+        super().__init__(parent, **kwargs)
         self.setState(False)
-        self.chan = None
-        self.cx_connect()
-
-        self.context_menu = None
-
-    def contextMenuEvent(self, event):
-        self.context_menu = CXGeneralCM(self)
-        self.context_menu.popup(event.globalPos())
-
-    def cx_connect(self):
-        if self._cname is None or self._cname == '':
-            return
-        self.chan = cda.IChan(self._cname, private=True, on_update=True)
-        self.chan.valueMeasured.connect(self.cs_update)
 
     def cs_update(self, chan):
+        super().cs_update(chan)
         self.flashOnce()
 
-    @pyqtSlot(str)
-    def set_cname(self, cname):
-        if self._cname == cname:
-            return
-        self._cname = cname
-        self.cx_connect()
 
-    def get_cname(self):
-        return self._cname
-
-    cname = pyqtProperty(str, get_cname, set_cname)
-
-
-class CXStateLed(LedWidget):
+class CXStateLed(LedWidget, CommonMixin):
     def __init__(self, parent=None, **kwargs):
-        super().__init__(parent)
-        self._cname = kwargs.get('cname', '')
-        self.chan = None
-        self.cx_connect()
-
-    def cx_connect(self):
-        if self._cname == '':
-            return
-        self.chan = cda.IChan(self._cname, private=True, on_update=True)
-        self.chan.valueMeasured.connect(self.cs_update)
+        super().__init__(parent, **kwargs)
 
     def cs_update(self, chan):
+        super().cs_update(chan)
         self.setState(bool(chan.val))
-
-    @pyqtSlot(str)
-    def set_cname(self, cname):
-        if self._cname == cname:
-            return
-        self._cname = cname
-        self.cx_connect()
-
-    def get_cname(self):
-        return self._cname
-
-    cname = pyqtProperty(str, get_cname, set_cname)
-
-
