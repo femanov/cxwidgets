@@ -5,7 +5,6 @@ from .menus.general_cm import CXGeneralCM
 
 class CommonMixin:
     def __init__(self, **kwargs):
-        #self._cname = kwargs.get('cname', None)
         self.chan = None
         self.status = 'unknown'
         self.def_stylesheet = None
@@ -51,7 +50,6 @@ class CommonMixin:
 
     @pyqtSlot(str)
     def set_cname(self, name):
-        #if hasattr(self, '_cname'):
         if self._cname == name:
             return
         self._cname = name

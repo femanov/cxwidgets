@@ -258,6 +258,9 @@
     </item>
     <item row="4" column="1">
      <widget class="CXIntLabel" name="cxintlabel">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="cname" stdset="0">
        <string>canhw:11.bend.dcct1</string>
       </property>
