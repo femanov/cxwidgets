@@ -5,6 +5,7 @@ from .common_mixin import CommonMixin
 
 class CXCheckBox(PCheckBox, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
         self.done.connect(self.cs_send)
 

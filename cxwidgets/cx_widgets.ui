@@ -79,7 +79,7 @@
     </item>
     <item row="1" column="1">
      <widget class="CXDoubleSpinBox" name="cxdoublespinbox">
-      <property name="cname">
+      <property name="cname" stdset="0">
        <string>canhw:11.bend.dcct1</string>
       </property>
      </widget>
@@ -100,7 +100,7 @@
     </item>
     <item row="3" column="1">
      <widget class="CXLCDNumber" name="cxlcdnumber">
-      <property name="cname">
+      <property name="cname" stdset="0">
        <string>canhw:11.bend.dcct1</string>
       </property>
      </widget>
@@ -189,11 +189,11 @@
         <height>18</height>
        </size>
       </property>
-      <property name="invert">
-       <bool>true</bool>
-      </property>
       <property name="cname" stdset="0">
        <string>canhw:19.ic.syn.xfer.test3.mask</string>
+      </property>
+      <property name="invert">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -258,7 +258,7 @@
     </item>
     <item row="4" column="1">
      <widget class="CXIntLabel" name="cxintlabel">
-      <property name="cname">
+      <property name="cname" stdset="0">
        <string>canhw:11.bend.dcct1</string>
       </property>
      </widget>
@@ -272,7 +272,7 @@
     </item>
     <item row="5" column="1">
      <widget class="CXDoubleLabel" name="cxdoublelabel">
-      <property name="cname">
+      <property name="cname" stdset="0">
        <string>canhw:11.bend.dcct1</string>
       </property>
       <property name="decimals">
@@ -282,7 +282,7 @@
     </item>
     <item row="6" column="1">
      <widget class="CXStrLabel" name="cxstrlabel">
-      <property name="cname">
+      <property name="cname" stdset="0">
        <string>cxhw:0.ddm.state</string>
       </property>
       <property name="max_len" stdset="0">
@@ -356,7 +356,7 @@
   </customwidget>
   <customwidget>
    <class>CXDoubleLabel</class>
-   <extends>CXIntLabel</extends>
+   <extends>QLabel</extends>
    <header>cxwidgets</header>
   </customwidget>
   <customwidget>

@@ -5,6 +5,7 @@ from .common_mixin import CommonMixin
 
 class CXIntLabel(QLabel, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
         if self.chan is None:
             self.setText('No cname')
@@ -16,6 +17,7 @@ class CXIntLabel(QLabel, CommonMixin):
 
 class CXDoubleLabel(QLabel, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
         if self.chan is None:
             self.setText('No cname')
@@ -46,6 +48,7 @@ class CXDoubleLabel(QLabel, CommonMixin):
 
 class CXStrLabel(QLabel, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         self._max_len = kwargs.get('max_len', 100)
         super().__init__(parent)
 

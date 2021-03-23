@@ -3,6 +3,7 @@ from .common_mixin import CommonMixin
 
 class CXProgressBar(QProgressBar, CommonMixin):
     def __init__(self, *args, **kwargs):
+        self._cname = None
         super().__init__(*args, **kwargs)
 
     def cs_update(self, chan):

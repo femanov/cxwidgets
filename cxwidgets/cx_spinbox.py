@@ -6,8 +6,9 @@ import pycx4.qcda as cda
 
 
 class CXSpinBox(PSpinBox, CommonMixin):
-    def __init__(self, parent=None, **kwargs):
-        super().__init__(parent, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self._cname = None
+        super().__init__(*args, **kwargs)
         self.done.connect(self.cs_send)
         self._hardmin = 0
         self._hardmax = 0

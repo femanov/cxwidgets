@@ -5,6 +5,7 @@ from .common_mixin import CommonMixin
 
 class CXEventLed(LedWidget, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
         self.setState(False)
 
@@ -15,6 +16,7 @@ class CXEventLed(LedWidget, CommonMixin):
 
 class CXStateLed(LedWidget, CommonMixin):
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
 
     def cs_update(self, chan):

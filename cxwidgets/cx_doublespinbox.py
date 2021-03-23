@@ -19,6 +19,7 @@ class CXDoubleSpinBox(PDoubleSpinBox, CommonMixin):
 
     """
     def __init__(self, parent=None, **kwargs):
+        self._cname = None
         super().__init__(parent, **kwargs)
         self.done.connect(self.cs_send)
         self.context_menu = None

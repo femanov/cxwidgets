@@ -4,8 +4,9 @@ from cxwidgets.aQt.QtCore import pyqtSignal, Qt, pyqtProperty
 class PSpinBox(QSpinBox):
     done = pyqtSignal(int)
 
-    def __init__(self, parent=None, **kwargs):
-        super().__init__(parent)
+    def __init__(self, *args, **kwargs):
+        self._cname = None
+        super().__init__(*args, **kwargs)
         self.valueChanged.connect(self.done)
         self.setRange(kwargs.get('min', -100000), kwargs.get('max', 100000))
         self._doneByEnter = False

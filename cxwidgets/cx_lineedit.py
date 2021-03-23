@@ -5,6 +5,7 @@ from .common_mixin import CommonMixin
 
 class CXLineEdit(QLineEdit, CommonMixin):
     def __init__(self, *args, **kwargs):
+        self._cname = None
         self._max_len = kwargs.get('max_len', 100)
         super().__init__(*args, **kwargs)
         self.setReadOnly(bool(kwargs.get('readonly', False)))

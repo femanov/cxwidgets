@@ -5,8 +5,9 @@ from .menus.general_cm import CXGeneralCM
 from .common_mixin import CommonMixin
 
 class CXSwitch(PSwitch, CommonMixin):
-    def __init__(self, parent=None, **kwargs):
-        super().__init__(parent, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self._cname = None
+        super().__init__(*args, **kwargs)
         self._invert = kwargs.get('invert', False)
         self.done.connect(self.cs_send)
 

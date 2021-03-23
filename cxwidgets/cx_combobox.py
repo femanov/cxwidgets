@@ -6,11 +6,12 @@ from .common_mixin import CommonMixin
 
 class CXTextComboBox(QComboBox, CommonMixin):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        self._cname = None
         self._values = ['none'] + kwargs.get('values', [])
         self._colors = [None] + kwargs.get('colors', [])
         self._icons = kwargs.get('icons', None)
         self._max_len = kwargs.get('max_len', max([len(x) for x in self._values]))
+        super().__init__(*args, **kwargs)
 
         for x in range(len(self._values)):
             self.insertItem(x, self._values[x])
