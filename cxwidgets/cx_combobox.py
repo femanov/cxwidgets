@@ -61,6 +61,7 @@ class CXTextComboBox(QComboBox, CommonMixin):
 
 class CXIntComboBox(QComboBox, CommonMixin):
     def __init__(self, *args, **kwargs):
+        self._cname = None
         super().__init__(*args, **kwargs)
         self._values = kwargs.get('values', {})
 

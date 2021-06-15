@@ -45,11 +45,11 @@ class CXDoubleSpinboxSettingsW(BaseGridW):
         self.grid.setColumnMinimumWidth(3, 100)
 
         # ranges now working incorrectly - reported to Bolkhov
-        # if source_w.chan is not None:
-        #     source_w.chan.get_range()
-        #     source_w.chan.get_strings()
-        #     print(source_w.chan.quant)
-        #     print(source_w.chan.rng)
+        if source_w.chan is not None:
+            source_w.chan.get_range()
+            source_w.chan.get_strings()
+            print(source_w.chan.quant)
+            print(source_w.chan.rng)
 
     def validate_minmax(self):
         pass
