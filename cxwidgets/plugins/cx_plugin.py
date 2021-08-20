@@ -7,7 +7,7 @@ from cxwidgets import CXEventLed, CXStateLed
 
 class CXDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):
     def __init__(self, parent=None):
-        super(CXDoubleSpinBoxWidgetPlugin, self).__init__(parent)
+        super().__init__(parent)
 
     def name(self):
         return 'CXDoubleSpinBox'

@@ -2,7 +2,7 @@
 
 from PyQt5.QtWidgets import QCheckBox, QSpinBox, QDoubleSpinBox, QLabel, QPushButton,\
     QSpacerItem, QSizePolicy, QGroupBox, QGridLayout
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, pyqtSlot, pyqtProperty
 
 from .auxwidgets import BaseGridW, VLine
 import json
@@ -10,6 +10,7 @@ import pyqtgraph as pg
 import pycx4.qcda as cda
 import time
 import numpy as np
+import datetime
 
 
 class CXPlotDataItem(pg.PlotDataItem):
@@ -19,44 +20,24 @@ class CXPlotDataItem(pg.PlotDataItem):
         self.max_nelems = kwargs.get('max_nelems', 4096)
         self.chan = cda.VChan(self._cname, max_nelems=self.max_nelems, private=True)
         self.chan.valueMeasured.connect(self.cs_update)
+        self._sampling_time = 4.0
+        self._start_time = 0.0
+        end_time = self.max_nelems * self._sampling_time + self._start_time
+        self.xd = np.arange(start=self._start_time, stop=end_time, step=self._sampling_time)
+        self.last_data_len = None
 
     def cs_update(self, chan):
-        self.setData(chan.val)
+        self.last_data_len = chan.nelems
+        self.setData(x=self.xd[:chan.nelems], y=chan.val)
 
+    @pyqtSlot(float)
+    def setSamplingTime(self, new_time):
+        self.timer.setInterval(new_time)
 
-# simple but not very optimized
-class CXScrollPlotDataItem(pg.PlotDataItem):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._cname = kwargs.get('cname', None)
-        self.length = kwargs.get('length', 1000)
-        self.update_time = kwargs.get('update_time', 200)
-        self.window = 0
-        self.data = np.zeros(self.length)
-        self.cur_data = self.data
-        self.chan = cda.DChan(self._cname, private=True, on_update=True)
-        self.chan.valueMeasured.connect(self.cs_update)
-        self.n_update = 0
+    def getSamplingTime(self):
+        return self.timer.interval()
 
-        self.setDownsampling(auto=True, method='peak')
-
-        self.timer = QTimer()
-        self.timer.start(self.update_time)
-        self.timer.timeout.connect(self.plot_update)
-        self.xd = np.arange(1 - 1 * self.length, 1)
-
-    def cs_update(self, chan):
-        self.cur_data[0] = chan.val
-        self.cur_data = np.roll(self.cur_data, -1)
-        if self.n_update < self.length:
-            self.n_update += 1
-
-    def plot_update(self):
-        if self.n_update < self.length:
-            self.setData(self.xd[-1 * self.n_update:], self.cur_data[-1 * self.n_update:])
-        else:
-            self.setData(self.xd, self.cur_data)
-
+    sampling_time = pyqtProperty(float, getSamplingTime, setSamplingTime)
 
 
 
