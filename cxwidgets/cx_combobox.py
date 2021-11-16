@@ -64,11 +64,18 @@ class CXIntComboBox(QComboBox, CommonMixin):
         self._cname = None
         super().__init__(*args, **kwargs)
         self._values = kwargs.get('values', {})
+        self._colors = kwargs.get('colors', {})
 
         for k in self._values:
             self.insertItem(k, self._values[k])
 
         self.currentIndexChanged.connect(self.cs_send)
+
+        self.currentIndexChanged.connect(self.update_bgcolor)
+
+    def update_bgcolor(self, ind):
+        if ind in self._colors:
+            self.setStyleSheet('QComboBox {background: ' + self._colors[ind] + ";}")
 
     @pyqtSlot(str)
     def setValue(self, value):

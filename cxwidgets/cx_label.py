@@ -9,10 +9,17 @@ class CXIntLabel(QLabel, CommonMixin):
         super().__init__(parent, **kwargs)
         if self.chan is None:
             self.setText('No cname')
+        self._values = kwargs.get('values', {})
+        self._colors = kwargs.get('colors', {})
 
     def cs_update(self, chan):
         super().cs_update(chan)
-        self.setText(str(chan.val))
+        if chan.val in self._values:
+            self.setText(self._values[chan.val])
+        else:
+            self.setText(str(chan.val))
+        if chan.val in self._colors:
+            self.setStyleSheet('QLabel {background: ' + self._colors[chan.val] + ";}")
 
 
 class CXDoubleLabel(QLabel, CommonMixin):
