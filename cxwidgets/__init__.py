@@ -35,3 +35,4 @@ __all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubl
            CXScrollPlotDataItem, TimeAxisItem, AgeAxisItem
            ]
 
+__version__ = "0.14"
