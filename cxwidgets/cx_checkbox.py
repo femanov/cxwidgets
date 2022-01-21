@@ -1,6 +1,6 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 from cxwidgets import PCheckBox
-from .common_mixin import CommonMixin
+from cxwidgets.common_mixin import CommonMixin
 
 
 class CXCheckBox(PCheckBox, CommonMixin):

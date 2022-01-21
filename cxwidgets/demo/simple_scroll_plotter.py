@@ -28,6 +28,7 @@ curv = CXScrollAgePlotDataItem(cname='cxhw:0.dcct.beamcurrent', pen=pen, length=
 
 plt.addItem(curv)
 plt.setXRange(0, 200, padding=0.02)
+
 plt.invertX(True)
 
 graph.show()

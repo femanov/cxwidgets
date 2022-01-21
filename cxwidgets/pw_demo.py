@@ -7,7 +7,7 @@ from cx_checkbox import CXCheckBox
 
 
 app = QtWidgets.QApplication(sys.argv)
-w = CXLCDNumber(None, 'canhw:13.BUN1.Imes')
+w = CXLCDNumber(cname='canhw:13.BUN1.Imes')
 w.show()
 
 w2 = CXCheckBox(cname='Ql1.Iset')

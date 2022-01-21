@@ -23,7 +23,7 @@ class PSwitch(QPushButton):
         self.setChecked(value)
 
     def heightForWidth(self, width):
-        return width / self.a_ratio
+        return width // self.a_ratio
 
     def paintEvent(self, event):
         bg_color = Qt.green if self.isChecked() else Qt.red
@@ -33,8 +33,12 @@ class PSwitch(QPushButton):
         h0 = s.height()
 
         w = w0 - 2*pen_width - 2
-        h = w/2 if w/2 < h0 - 2*pen_width else h0 - 2*pen_width
-        r = h/3
+        rw = w // 2
+
+        h = rw if rw < h0 - 2*pen_width else h0 - 2*pen_width
+        rh = h // 2
+
+        r = h // 3
 
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
@@ -44,11 +48,11 @@ class PSwitch(QPushButton):
         pen = QPen(QColor(40, 40, 70))
         pen.setWidth(pen_width)
         painter.setPen(pen)
-        painter.drawRoundedRect(QRect(-w/2, -h/2, w, h), r, r)
+        painter.drawRoundedRect(QRect(-rw, -rh, w, h), r, r)
 
         painter.setBrush(QBrush(bg_color))
-        sw_rect = QRect(-w/2, -h/2, h, h)
+        sw_rect = QRect(-rw, -rh, h, h)
         if self.isChecked():
-            sw_rect.moveLeft(w/2 - h)
+            sw_rect.moveLeft(rw - h)
         painter.drawRoundedRect(sw_rect, r, r)
 

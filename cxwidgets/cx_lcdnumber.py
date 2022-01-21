@@ -1,5 +1,5 @@
 from cxwidgets.aQt.QtWidgets import QLCDNumber
-from .common_mixin import CommonMixin
+from cxwidgets.common_mixin import CommonMixin
 
 
 class CXLCDNumber(QLCDNumber, CommonMixin):

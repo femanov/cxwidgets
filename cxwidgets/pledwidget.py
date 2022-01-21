@@ -17,7 +17,7 @@ class LedWidget(QWidget):
 
     def paintEvent(self, event):
         d = self._diameter
-        r = d / 2
+        r = int(d / 2)
         painter = QPainter()
         x = 0
         y = 0
@@ -26,7 +26,7 @@ class LedWidget(QWidget):
         elif self._alignment & Qt.AlignRight:
             x = self.width() - d
         elif self._alignment & Qt.AlignHCenter:
-            x = (self.width() - d) / 2
+            x = int((self.width() - d) / 2)
         elif self._alignment & Qt.AlignJustify:
             x = 0
 
@@ -35,11 +35,11 @@ class LedWidget(QWidget):
         elif self._alignment & Qt.AlignBottom:
             y = self.height() - d
         elif self._alignment & Qt.AlignVCenter:
-            y = (self.height() - d) / 2
+            y = int((self.height() - d) / 2)
 
         color = self._on_color if self._state else self._off_color
 
-        gradient = QRadialGradient(x + r, y + r, d * 0.4, d * 0.4, d * 0.4)
+        gradient = QRadialGradient(x + r, y + r, int(d * 0.4), int(d * 0.4), int(d * 0.4))
         gradient.setColorAt(0, Qt.white)
         gradient.setColorAt(1, color)
 
