@@ -24,7 +24,8 @@ plt.showGrid(x=True, y=True)
 
 #curv = CXScrollPlotDataItem(cname='canhw:21.ring_current', pen=pen, length=2000)
 #curv = CXScrollPlotDataItem(cname='cxhw:0.dcct.beamcurrent', pen=pen, length=2000, utime=200)
-curv = CXScrollAgePlotDataItem(cname='cxhw:0.dcct.beamcurrent', pen=pen, length=10000, utime=200)
+#curv = CXScrollAgePlotDataItem(cname='cxhw:0.dcct.beamcurrent', pen=pen, length=10000, utime=200)
+curv = CXScrollAgePlotDataItem(cname='cxhw:5.out1.t', pen=pen, length=10000, utime=200)
 
 
 plt.addItem(curv)
