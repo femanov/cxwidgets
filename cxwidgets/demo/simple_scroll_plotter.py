@@ -12,7 +12,8 @@ pen = (0, 255, 0)
 
 graph = pg.GraphicsLayoutWidget()
 graph.resize(700, 700)
-plt = graph.addPlot(title="simple scroll demo")
+plt = graph.addPlot(title="simple scroll demo",
+                    labels={'left': ('Beam current', 'mA'), 'bottom': ('Age', 's')})
 # plt = graph.addPlot(title="simple scroll demo",
 #                     axisItems={'bottom': TimeAxisItem(orientation='bottom', format="%H:%M:%S")})
 # plt = graph.addPlot(title="simple scroll demo",
@@ -28,7 +29,7 @@ curv = CXScrollAgePlotDataItem(cname='cxhw:0.dcct.beamcurrent', pen=pen, length=
 
 plt.addItem(curv)
 plt.setXRange(0, 200, padding=0.02)
-
+# text='Age,s'
 plt.invertX(True)
 
 graph.show()

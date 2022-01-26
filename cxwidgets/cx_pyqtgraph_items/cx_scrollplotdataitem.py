@@ -81,7 +81,7 @@ class CXScrollAgePlotDataItem(pg.PlotDataItem):
         self.time_depth = kwargs.get('time_depth', 1000)
 
         self.window = 0
-        self.data = np.zeros((2,self.length))
+        self.data = np.zeros((2, self.length))
         self.cur_data = self.data
         self.chan = cda.DChan(self._cname, private=True, on_update=True)
         self.chan.valueMeasured.connect(self.cs_update)
