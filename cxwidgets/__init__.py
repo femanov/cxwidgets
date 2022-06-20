@@ -6,6 +6,7 @@ from .plcdnumber import PLCDNumber
 from .pspinbox import PSpinBox
 from .pledwidget import LedWidget
 from .pswitch import PSwitch
+from .bpmwidget import BPMWidget
 
 from .cx_doublespinbox import CXDoubleSpinBox
 from .cx_spinbox import CXSpinBox
@@ -20,15 +21,15 @@ from .cx_label import CXIntLabel, CXDoubleLabel, CXStrLabel
 from .cx_led import CXEventLed, CXStateLed
 
 
-from .cx_bpm_plot import BPMWidget, K500BPMWidget
+#from .cx_bpm_plot import BPMWidget, K500BPMWidget
 
 from .cx_plot import CXProcPlot, CXPlotDataItem
 from .cx_pyqtgraph_items.cx_scrollplotdataitem import CXScrollPlotDataItem, TimeAxisItem, AgeAxisItem, CXScrollAgePlotDataItem
 
 __all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubleSpinBox, PLCDNumber,
-           PSpinBox, LedWidget, PSwitch,
+           PSpinBox, LedWidget, PSwitch, BPMWidget,
            CXCheckBox, CXTextComboBox, CXIntComboBox, CXDoubleSpinBox, CXLCDNumber, CXLineEdit, CXProgressBar,
-           CXPushButton, CXSpinBox, BPMWidget, K500BPMWidget,
+           CXPushButton, CXSpinBox,
            CXSwitch, CXDevSwitch, CXEventLed, CXStateLed,
            CXIntLabel, CXDoubleLabel, CXStrLabel,
            CXProcPlot, CXPlotDataItem,

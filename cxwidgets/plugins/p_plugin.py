@@ -1,6 +1,6 @@
 from cxwidgets.aQt.QtDesigner import QPyDesignerCustomWidgetPlugin
 from cxwidgets.aQt.QtGui import QIcon
-from cxwidgets import PDoubleSpinBox, PCheckBox, PLCDNumber, PSpinBox, LedWidget
+from cxwidgets import PDoubleSpinBox, PCheckBox, PLCDNumber, PSpinBox, LedWidget, BPMWidget
 
 
 class PDoubleSpinBoxWidgetPlugin(QPyDesignerCustomWidgetPlugin):
@@ -86,4 +86,19 @@ class LedPlugin(PDoubleSpinBoxWidgetPlugin):
 
     def createWidget(self, parent):
         return LedWidget(parent)
+
+
+class BPMWidgetPlugin(PDoubleSpinBoxWidgetPlugin):
+    def name(self):
+        return "BPMWidget"
+
+    def toolTip(self):
+        return "general BPM widget"
+
+    def whatsThis(self):
+        return "BPM widget"
+
+    def createWidget(self, parent):
+        return BPMWidget(parent)
+
 

@@ -77,7 +77,7 @@ class CXIntComboBox(QComboBox, CommonMixin):
         if ind in self._colors:
             self.setStyleSheet('QComboBox {background: ' + self._colors[ind] + ";}")
 
-    @pyqtSlot(str)
+    @pyqtSlot(int)
     def setValue(self, value):
         self.setCurrentIndex(value)
 
