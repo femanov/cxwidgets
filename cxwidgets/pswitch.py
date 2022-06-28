@@ -23,7 +23,7 @@ class PSwitch(QPushButton):
         self.setChecked(value)
 
     def heightForWidth(self, width):
-        return width // self.a_ratio
+        return int(width / self.a_ratio)
 
     def paintEvent(self, event):
         bg_color = Qt.green if self.isChecked() else Qt.red
@@ -34,10 +34,8 @@ class PSwitch(QPushButton):
 
         w = w0 - 2*pen_width - 2
         rw = w // 2
-
         h = rw if rw < h0 - 2*pen_width else h0 - 2*pen_width
         rh = h // 2
-
         r = h // 3
 
         painter = QPainter(self)
