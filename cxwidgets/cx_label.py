@@ -1,5 +1,6 @@
 from cxwidgets.aQt.QtCore import pyqtSlot, pyqtProperty
 from cxwidgets.aQt.QtWidgets import QLabel
+from cxwidgets.aQt.QtGui import QPixmap
 import pycx4.qcda as cda
 from .common_mixin import CommonMixin
 
@@ -11,6 +12,11 @@ class CXIntLabel(QLabel, CommonMixin):
             self.setText('No cname')
         self._values = kwargs.get('values', {})
         self._colors = kwargs.get('colors', {})
+        self._pics = kwargs.get('pics', None)
+        self._pics_h = kwargs.get('pics_h', 70)
+        if self._pics:
+            self._pixmaps= {x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
+
 
     def cs_update(self, chan):
         super().cs_update(chan)
@@ -20,6 +26,8 @@ class CXIntLabel(QLabel, CommonMixin):
             self.setText(str(chan.val))
         if chan.val in self._colors:
             self.setStyleSheet('QLabel {background: ' + self._colors[chan.val] + ";}")
+        if chan.val in self._pixmaps:
+            self.setPixmap(self._pixmaps[chan.val])
 
 
 class CXDoubleLabel(QLabel, CommonMixin):
@@ -57,7 +65,12 @@ class CXStrLabel(QLabel, CommonMixin):
     def __init__(self, parent=None, **kwargs):
         self._cname = None
         self._max_len = kwargs.get('max_len', 100)
-        super().__init__(parent)
+        super().__init__(parent, **kwargs)
+        if self.chan is None:
+            self.setText('No cname')
+        self._pics = kwargs.get('pics', {})
+        self._pics_h = kwargs.get('pics_h', 70)
+        self._pixmaps={x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
 
     def cx_connect(self):
         if self._cname is None or self._cname == '':
@@ -69,6 +82,8 @@ class CXStrLabel(QLabel, CommonMixin):
     def cs_update(self, chan):
         super().cs_update(chan)
         self.setText(str(chan.val))
+        if chan.val in self._pixmaps:
+            self.setPixmap(self._pixmaps[chan.val])
 
     @pyqtSlot(float)
     def set_max_len(self, max_len):
