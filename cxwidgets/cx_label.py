@@ -14,8 +14,9 @@ class CXIntLabel(QLabel, CommonMixin):
         self._colors = kwargs.get('colors', {})
         self._pics = kwargs.get('pics', None)
         self._pics_h = kwargs.get('pics_h', 70)
+        self._pixmaps = {}
         if self._pics:
-            self._pixmaps= {x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
+            self._pixmaps = {x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
 
 
     def cs_update(self, chan):
