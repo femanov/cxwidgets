@@ -13,7 +13,7 @@ class CXIntLabel(QLabel, CommonMixin):
         self._values = kwargs.get('values', {})
         self._colors = kwargs.get('colors', {})
         self._pics = kwargs.get('pics', None)
-        self._pics_h = kwargs.get('pics_h', 70)
+        self._pics_h = kwargs.get('pics_h', 100)
         self._pixmaps = {}
         if self._pics:
             self._pixmaps = {x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
@@ -70,7 +70,7 @@ class CXStrLabel(QLabel, CommonMixin):
         if self.chan is None:
             self.setText('No cname')
         self._pics = kwargs.get('pics', {})
-        self._pics_h = kwargs.get('pics_h', 70)
+        self._pics_h = kwargs.get('pics_h', 100)
         self._pixmaps={x: QPixmap(self._pics[x]).scaledToHeight(self._pics_h) for x in self._pics}
 
     def cx_connect(self):

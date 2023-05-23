@@ -35,5 +35,3 @@ __all__ = [HLine, VLine, BaseGridW, BaseFrameGridW, PCheckBox, PComboBox, PDoubl
            CXProcPlot, CXPlotDataItem,
            CXScrollPlotDataItem, TimeAxisItem, AgeAxisItem
            ]
-
-__version__ = "0.18"

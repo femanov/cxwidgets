@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
-from cxwidgets import __version__
 
 setup(
     name='cxwidgets',
-    version=__version__,
+    version='0.21',
     author='Fedor Emanov',
     description='PyQt widgets connected to CX v4 control system framewok with designer plugins',
     license='gpl-3.0',
