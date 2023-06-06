@@ -6,15 +6,6 @@ import pycx4.qcda as cda
 import numpy as np
 
 
-class TimeAxisItem(pg.AxisItem):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.format = kwargs.get('format', "%H:%M:%S.%f")
-
-    def tickStrings(self, values, scale, spacing):
-        return [datetime.datetime.fromtimestamp(value).strftime(self.format) for value in values]
-
-
 class AgeAxisItem(pg.AxisItem):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -50,9 +41,10 @@ class CXScrollPlotDataItem(pg.PlotDataItem):
         self.timer.timeout.connect(self.plot_update)
 
     def cs_update(self, chan):
-        self.cur_yd[0] = chan.val
+        # need checking
+        self.cur_yd[-1] = chan.val
         self.cur_yd = np.roll(self.cur_yd, -1)
-        self.cur_xd[0] = chan.time/1e6
+        self.cur_xd[-1] = chan.time/1e6
         self.cur_xd = np.roll(self.cur_xd, -1)
         if self.n_update < self.length:
             self.n_update += 1
@@ -185,3 +177,52 @@ class CXComositeScrollAgePlotDataItem():
 #     ptr5 += 1
 #
 #
+
+# simple but not very optimized
+class CXHistoryPlotDataItem(pg.PlotDataItem):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._cname = kwargs.get('cname', None)
+        self.length = kwargs.get('length', 1000)
+        self.time_depth = kwargs.get('time_depth', 1000)
+
+        self.window = 0
+        self.yd = np.zeros(self.length)
+        self.xd = np.zeros(self.length)
+        self.cur_yd = self.yd
+        self.cur_xd = self.xd
+        self.chan = cda.DChan(self._cname, private=True, on_update=True)
+        self.chan.valueMeasured.connect(self.cs_update)
+        self.n_update = 0
+
+        self.setDownsampling(auto=True, method='peak')
+
+        self.timer = QTimer()
+        self.timer.start(self.update_time)
+        self.update_time = kwargs.get('utime', 1000)
+        self.timer.timeout.connect(self.plot_update)
+
+    def cs_update(self, chan):
+        self.cur_xd = np.roll(self.cur_xd, -1)
+        self.cur_yd = np.roll(self.cur_yd, -1)
+        self.cur_yd[-1] = chan.val
+        self.cur_xd[-1] = chan.time/1e6
+        if self.n_update < self.length:
+            self.n_update += 1
+
+    def plot_update(self):
+        if self.n_update < self.length:
+            self.setData(self.cur_xd[-1 * self.n_update:], self.cur_yd[-1 * self.n_update:])
+        else:
+            self.setData(self.cur_xd, self.cur_yd)
+
+    @pyqtSlot(int)
+    def set_update_time(self, new_time):
+        self.timer.setInterval(new_time)
+
+    def get_update_time(self):
+        return self.timer.interval()
+
+    update_time = pyqtProperty(int, get_update_time, set_update_time)
+
+
